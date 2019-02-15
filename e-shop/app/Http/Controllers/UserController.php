@@ -12,9 +12,9 @@ class UserController extends Controller
     {
         $user = User::find($user_id);
         if ($user->role_id == 1) {
-            return view("");
+            return view("admin.page.index");
         } else {
-            return view("");
+            return view("admin.page.index");
         }
     }
     // End Page Route Methods

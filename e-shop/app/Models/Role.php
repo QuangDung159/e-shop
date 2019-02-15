@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 12 Feb 2019 06:37:37 +0000.
+ * Date: Fri, 15 Feb 2019 13:24:48 +0000.
  */
 
 namespace App\Models;
@@ -13,7 +13,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * Class Role
  * 
  * @property string $id
- * @property int $name
+ * @property string $name
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * 
@@ -25,10 +25,6 @@ class Role extends Eloquent
 {
 	protected $table = 'role';
 	public $incrementing = false;
-
-	protected $casts = [
-		'name' => 'int'
-	];
 
 	protected $fillable = [
 		'name'

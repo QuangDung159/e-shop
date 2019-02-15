@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 12 Feb 2019 06:37:37 +0000.
+ * Date: Fri, 15 Feb 2019 13:24:48 +0000.
  */
 
 namespace App\Models;
@@ -26,6 +26,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $point
  * 
  * @property \App\Models\Role $role
+ * @property \App\Models\ShippingAddress $shipping_address
  * @property \Illuminate\Database\Eloquent\Collection $comments
  * @property \Illuminate\Database\Eloquent\Collection $replies
  * @property \Illuminate\Database\Eloquent\Collection $transactions
@@ -65,6 +66,11 @@ class User extends Eloquent
 	public function role()
 	{
 		return $this->belongsTo(\App\Models\Role::class);
+	}
+
+	public function shipping_address()
+	{
+		return $this->belongsTo(\App\Models\ShippingAddress::class, 'shiping_address_id');
 	}
 
 	public function comments()
