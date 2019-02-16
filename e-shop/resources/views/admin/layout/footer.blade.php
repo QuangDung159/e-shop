@@ -3,7 +3,8 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="{{$DIRECTORY_ADMIN_ASSET}}bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
+{{-- Vue --}}
+<script src="/js/app.js"></script>
 <!-- Metis Menu Plugin JavaScript -->
 <script src="{{$DIRECTORY_ADMIN_ASSET}}bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
@@ -13,6 +14,7 @@
 <!-- DataTables JavaScript -->
 <script src="{{$DIRECTORY_ADMIN_ASSET}}bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
 <script src="{{$DIRECTORY_ADMIN_ASSET}}bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>

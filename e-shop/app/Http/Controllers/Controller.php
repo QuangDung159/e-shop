@@ -15,5 +15,9 @@ class Controller extends BaseController
     public function __construct()
     {
         View::share("DIRECTORY_ADMIN_ASSET", "asset/admin/");
+
+        View::share("SUBMIT_BUTTON", "Submit");
+        View::share("EDIT_BUTTON", "Edit");
+        View::share("CANCEL_BUTTON", "Cancel");
     }
 }

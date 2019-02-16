@@ -1,6 +1,7 @@
 @include("admin.layout.header")
 <body>
-<div id="wrapper">
+<div id="app">
+    @include("admin.layout.nav")
     @yield("content")
 </div>
 <!-- /#wrapper -->
