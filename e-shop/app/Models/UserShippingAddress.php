@@ -10,26 +10,25 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class Transaction
+ * Class UserShippingAddress
  * 
  * @property string $user_id
- * @property string $cart_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property string $shipping_address_id
  * 
- * @property \App\Models\Cart $cart
+ * @property \App\Models\ShippingAddress $shipping_address
  * @property \App\Models\User $user
  *
  * @package App\Models
  */
-class Transaction extends Eloquent
+class UserShippingAddress extends Eloquent
 {
-	protected $table = 'transaction';
+	protected $table = 'user_shipping_address';
 	public $incrementing = false;
+	public $timestamps = false;
 
-	public function cart()
+	public function shipping_address()
 	{
-		return $this->belongsTo(\App\Models\Cart::class);
+		return $this->belongsTo(\App\Models\ShippingAddress::class);
 	}
 
 	public function user()

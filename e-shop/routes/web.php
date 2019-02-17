@@ -51,6 +51,17 @@ Route::group(
             function () {
                 $CONTROLLER_NAME = "UserController@";
                 Route::get("{user_id}", $CONTROLLER_NAME . "getDetailUser");
+                Route::post("{user_id}", $CONTROLLER_NAME . "postUpdateUser");
+            }
+        );
+
+        Route::group(
+            [
+                "prefix" => "role"
+            ],
+            function () {
+                $CONTROLLER_NAME = "RoleController@";
+                Route::get("list", $CONTROLLER_NAME . "getListRole");
             }
         );
     }

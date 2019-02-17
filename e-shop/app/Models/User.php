@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Fri, 15 Feb 2019 13:24:48 +0000.
+ * Date: Sun, 17 Feb 2019 02:11:17 +0000.
  */
 
 namespace App\Models;
@@ -16,9 +16,9 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $username
  * @property string $email
  * @property string $password
+ * @property string $full_name
  * @property string $role_id
  * @property string $phone
- * @property string $shiping_address_id
  * @property \Carbon\Carbon $dob
  * @property bool $is_active
  * @property \Carbon\Carbon $created_at
@@ -26,10 +26,10 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $point
  * 
  * @property \App\Models\Role $role
- * @property \App\Models\ShippingAddress $shipping_address
  * @property \Illuminate\Database\Eloquent\Collection $comments
  * @property \Illuminate\Database\Eloquent\Collection $replies
  * @property \Illuminate\Database\Eloquent\Collection $transactions
+ * @property \Illuminate\Database\Eloquent\Collection $shipping_addresses
  *
  * @package App\Models
  */
@@ -55,9 +55,9 @@ class User extends Eloquent
 		'username',
 		'email',
 		'password',
+		'full_name',
 		'role_id',
 		'phone',
-		'shiping_address_id',
 		'dob',
 		'is_active',
 		'point'
@@ -66,11 +66,6 @@ class User extends Eloquent
 	public function role()
 	{
 		return $this->belongsTo(\App\Models\Role::class);
-	}
-
-	public function shipping_address()
-	{
-		return $this->belongsTo(\App\Models\ShippingAddress::class, 'shiping_address_id');
 	}
 
 	public function comments()
@@ -86,5 +81,10 @@ class User extends Eloquent
 	public function transactions()
 	{
 		return $this->hasMany(\App\Models\Transaction::class);
+	}
+
+	public function shipping_addresses()
+	{
+		return $this->belongsToMany(\App\Models\ShippingAddress::class, 'user_shipping_address');
 	}
 }
