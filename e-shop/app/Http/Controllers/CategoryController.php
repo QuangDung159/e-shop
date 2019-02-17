@@ -2,28 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class CategoryController extends Controller
 {
     // Route Page Methods
-
+    public function showListCategory()
+    {
+        return view("admin.page.category.list");
+    }
     // End Page Route Methods
 
 //----------------------------------------------------------
 
     // Route Webservices Methods
-    public function getListRole()
+    public function getListCategory()
     {
-        $list_role = Role::all();
+        $list_category = Category::where("is_active", true)->get();
         return response(
             [
-                "list_role" => $list_role,
+                "list_category" => $list_category,
                 "result" => "success"
             ], 200
         );
     }
-
     // End Route Webservices Methods
 }

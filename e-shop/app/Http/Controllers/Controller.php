@@ -12,6 +12,16 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    // Route Page Methods
+
+    // End Page Route Methods
+
+//----------------------------------------------------------
+
+    // Route Webservices Methods
+
+    // End Route Webservices Methods
+
     public function __construct()
     {
         View::share("DIRECTORY_ADMIN_ASSET", "asset/admin/");

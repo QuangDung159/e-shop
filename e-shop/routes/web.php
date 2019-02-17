@@ -34,6 +34,16 @@ Route::group(
                 Route::get("user/list", $CONTROLLER_NAME . "showUserList");
             }
         );
+
+        Route::group(
+            [
+                "prefix" => "category"
+            ],
+            function () {
+                $CONTROLLER_NAME = "CategoryController@";
+                Route::get("list", $CONTROLLER_NAME . "showListCategory");
+            }
+        );
     }
 );
 // End URL Routing Page
@@ -67,6 +77,16 @@ Route::group(
             function () {
                 $CONTROLLER_NAME = "RoleController@";
                 Route::get("list", $CONTROLLER_NAME . "getListRole");
+            }
+        );
+
+        Route::group(
+            [
+                "prefix" => "category"
+            ],
+            function () {
+                $CONTROLLER_NAME = "CategoryController@";
+                Route::get("list", $CONTROLLER_NAME . "getListCategory");
             }
         );
     }
