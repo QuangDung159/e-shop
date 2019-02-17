@@ -18,6 +18,8 @@ Vue.component('example', require('./components/Example.vue'));
 
 Vue.component("user-detail-comp", require("./components/user_detail_comp"));
 
+Vue.component("user-list-comp", require("./components/user_list_comp"));
+
 const app = new Vue({
     el: '#app'
 });

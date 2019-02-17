@@ -30,7 +30,8 @@
                                     <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
                                         <div class="form-group">
                                             <label>User Role :</label>
-                                            <select class="form-control" :disabled="!is_edit_clicked">
+                                            <select class="form-control" :disabled="!is_edit_clicked"
+                                                    v-model="user.role_id">
                                                 <option v-for="role in list_role"
                                                         v-bind:value="role.id"
                                                         v-bind:selected="user.role_id == role.id">{{role.name}}
@@ -134,7 +135,7 @@
             },
 
             getUserDetail() {
-                window.axios.get("api/user/" + this.user_id)
+                window.axios.get("api/user/detail/" + this.user_id)
                     .then(response => {
                             const user = response.data.user;
                             this.user.id = user.id;
@@ -168,7 +169,7 @@
             },
 
             postUpdateUser() {
-                window.axios.post("api/user/" + this.user_id,
+                window.axios.post("api/user/detail/" + this.user_id,
                     {
                         role_id: this.user.role_id,
                         full_name: this.user.full_name,

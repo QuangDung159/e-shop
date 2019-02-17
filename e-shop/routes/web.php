@@ -30,6 +30,8 @@ Route::group(
             function () {
                 $CONTROLLER_NAME = "UserController@";
                 Route::get("home/{user_id}", $CONTROLLER_NAME . "showDetailUserPage");
+                Route::get("user/detail/{user_id}", $CONTROLLER_NAME . "showDetailUserPage");
+                Route::get("user/list", $CONTROLLER_NAME . "showUserList");
             }
         );
     }
@@ -50,8 +52,10 @@ Route::group(
             ],
             function () {
                 $CONTROLLER_NAME = "UserController@";
-                Route::get("{user_id}", $CONTROLLER_NAME . "getDetailUser");
-                Route::post("{user_id}", $CONTROLLER_NAME . "postUpdateUser");
+                Route::get("detail/{user_id}", $CONTROLLER_NAME . "getDetailUser");
+                Route::post("detail/{user_id}", $CONTROLLER_NAME . "postUpdateUser");
+                Route::get("list", $CONTROLLER_NAME . "getUserList");
+                Route::get("delete/{user_id}", $CONTROLLER_NAME."getDeleteUser");
             }
         );
 

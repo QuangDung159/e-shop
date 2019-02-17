@@ -1099,6 +1099,8 @@ Vue.component('example', __webpack_require__(40));
 
 Vue.component("user-detail-comp", __webpack_require__(43));
 
+Vue.component("user-list-comp", __webpack_require__(63));
+
 var app = new Vue({
   el: '#app'
 });
@@ -44299,7 +44301,7 @@ exports = module.exports = __webpack_require__(46)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -44759,6 +44761,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -44789,7 +44792,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getUserDetail: function getUserDetail() {
             var _this = this;
 
-            window.axios.get("api/user/" + this.user_id).then(function (response) {
+            window.axios.get("api/user/detail/" + this.user_id).then(function (response) {
                 var user = response.data.user;
                 _this.user.id = user.id;
                 _this.user.email = user.email;
@@ -44817,7 +44820,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         postUpdateUser: function postUpdateUser() {
             var _this3 = this;
 
-            window.axios.post("api/user/" + this.user_id, {
+            window.axios.post("api/user/detail/" + this.user_id, {
                 role_id: this.user.role_id,
                 full_name: this.user.full_name,
                 phone: this.user.phone,
@@ -44927,8 +44930,35 @@ var render = function() {
                         _c(
                           "select",
                           {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.user.role_id,
+                                expression: "user.role_id"
+                              }
+                            ],
                             staticClass: "form-control",
-                            attrs: { disabled: !_vm.is_edit_clicked }
+                            attrs: { disabled: !_vm.is_edit_clicked },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.user,
+                                  "role_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
                           },
                           _vm._l(_vm.list_role, function(role) {
                             return _c(
@@ -45277,6 +45307,336 @@ var Role = function Role(id, name) {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (Role);
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(64)
+}
+var normalizeComponent = __webpack_require__(9)
+/* script */
+var __vue_script__ = __webpack_require__(66)
+/* template */
+var __vue_template__ = __webpack_require__(67)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-4824aa73"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/user_list_comp.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4824aa73", Component.options)
+  } else {
+    hotAPI.reload("data-v-4824aa73", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(65);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(47)("c118b2bc", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4824aa73\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./user_list_comp.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4824aa73\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./user_list_comp.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(46)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__user_model__ = __webpack_require__(61);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "user_list_comp",
+    data: function data() {
+        return {
+            user: new __WEBPACK_IMPORTED_MODULE_0__user_model__["a" /* default */](),
+            list_user: [],
+            is_delete_trigger: false
+        };
+    },
+    created: function created() {
+        this.getUserList();
+    },
+
+
+    methods: {
+        getUserList: function getUserList() {
+            var _this = this;
+
+            window.axios.get("api/user/list/").then(function (response) {
+                _this.list_user = response.data.list_user;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getDeleteUser: function getDeleteUser(user_id) {
+            var _this2 = this;
+
+            window.axios.get("api/user/delete/" + user_id).then(function (response) {
+                console.log(response);
+                _this2.is_delete_trigger = true;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        navToUserDetail: function navToUserDetail(user_id) {
+            window.location.replace("admin/user/detail/" + user_id);
+        }
+    },
+
+    watch: {
+        is_delete_trigger: function is_delete_trigger() {
+            this.getUserList();
+        }
+    }
+});
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "list-user-comp" }, [
+    _c("div", { attrs: { id: "page-wrapper" } }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("table", { staticClass: "table table-striped" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.list_user, function(user) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(user.id))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(user.username))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(user.email))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(user.full_name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(user.role_id))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(user.phone))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(user.dob))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(user.point))]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "center" }, [
+                    _c("i", { staticClass: "fa fa-trash-o  fa-fw" }),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        attrs: { role: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.getDeleteUser(user.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "center" }, [
+                    _c("i", { staticClass: "fa fa-pencil fa-fw" }),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        attrs: { role: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.navToUserDetail(user.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Edit")]
+                    )
+                  ])
+                ])
+              }),
+              0
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-12" }, [
+      _c("h1", { staticClass: "page-header" }, [
+        _vm._v("User\n                        "),
+        _c("small", [_vm._v("List")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("User ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Username")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Full Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Role ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Phone Number")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("D.O.B")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Point")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Delete")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Edit")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4824aa73", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

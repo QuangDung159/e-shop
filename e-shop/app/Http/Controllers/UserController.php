@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -21,6 +22,13 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function showUserList()
+    {
+        Log::info("showUserList");
+        return view("admin.page.user.list");
+    }
+
     // End Page Route Methods
 
 //----------------------------------------------------------
@@ -77,6 +85,29 @@ class UserController extends Controller
                 "result" => "success"
             ], 200
         );
+    }
+
+    public function getUserList()
+    {
+        Log::info("getUserList");
+        $list_user = User::where("is_active", true)->get();
+
+        return response(
+            [
+                "list_user" => $list_user,
+                "result" => "success"
+            ], 200);
+    }
+
+    public function getDeleteUser($user_id)
+    {
+        $user = User::find($user_id);
+        $user->is_active = false;
+        $user->save();
+        return response([
+            "user" => $user,
+            "result" => "delete_success"
+        ], 200);
     }
 
     // End Route Webservices Methods
