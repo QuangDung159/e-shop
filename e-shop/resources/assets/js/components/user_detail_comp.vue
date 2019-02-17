@@ -5,12 +5,17 @@
                 <div class="row">
                     <div class="col-lg-12">
 
+                        <!-- Notification -->
                         <notification_comp action="Update"
                                            module="user"
                                            v-if="is_show_notif"></notification_comp>
+                        <!-- End Notification -->
 
+                        <!-- Alert -->
                         <alert_comp :list_error="list_error" v-else></alert_comp>
+                        <!-- Edn Alert -->
 
+                        <!-- User Detail -->
                         <h1 class="page-header">User
                             <small>Detail</small>
                         </h1>
@@ -63,7 +68,7 @@
                                     <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
                                         <div class="form-group">
                                             <label>D.O.B :</label>
-                                            <input type="text" class="form-control" :disabled="!is_edit_clicked"
+                                            <input type="date" class="form-control" :disabled="!is_edit_clicked"
                                                    v-model="user.dob">
                                         </div>
                                     </div>
@@ -101,11 +106,8 @@
                             </form>
                         </div>
                     </div>
-                    <!-- /.row -->
                 </div>
-                <!-- /.container-fluid -->
             </div>
-            <!-- /#page-wrapper -->
         </div>
     </div>
 </template>
@@ -115,6 +117,7 @@
     import Role from "../role_model";
     import notification_comp from "./notification_comp";
     import alert_comp from "./alert_comp";
+    import Helper from "../helper";
 
     export default {
         name: "user_detail_comp",
@@ -125,7 +128,8 @@
                 role: new Role(),
                 list_role: [],
                 is_show_notif: false,
-                list_error: []
+                list_error: [],
+                helper: new Helper()
             }
         },
 
@@ -160,7 +164,7 @@
                             this.user.username = user.username;
                             this.user.phone = user.phone;
                             this.user.point = user.point;
-                            this.user.dob = user.dob;
+                            this.user.dob = this.helper.formatDate(user.dob);
                             this.user.full_name = user.full_name;
                             this.getListRole();
                         }
@@ -204,7 +208,7 @@
                         this.is_show_notif = false;
                     }
                 );
-            }
+            },
         },
 
         components:

@@ -20,6 +20,14 @@ Vue.component("user-detail-comp", require("./components/user_detail_comp"));
 
 Vue.component("user-list-comp", require("./components/user_list_comp"));
 
+import moment from "moment";
+
+Vue.filter("format_DDMMYYYY", function (datetime) {
+    if (datetime) {
+        return moment(String(datetime)).format("DD - MM - YYYY");
+    }
+});
+
 const app = new Vue({
     el: '#app'
 });

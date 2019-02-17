@@ -110,5 +110,58 @@ class UserController extends Controller
         ], 200);
     }
 
+    public function postCreateUser(Request $req)
+    {
+        $this->validate($req,
+            [
+                "full_name" => "required|max:255|min:3",
+                "username" => "required|max:255|min:3",
+                "phone" => "required|max:12|min:10",
+                "dob" => "required",
+                "email" => "required|max:255|min:3",
+                "role_id" => "required"
+            ],
+            [
+                "full_name.required" => "Please provide Full Name",
+                "full_name.max" => "Too long",
+                "full_name.min" => "Too short",
+
+                "username.required" => "Please provide Username",
+                "username.max" => "Too long",
+                "username.min" => "Too short",
+
+                "phone.required" => "Please provide Phone Number",
+                "phone.max" => "Too long",
+                "phone.min" => "Too short",
+
+                "dob.required" => "Please provide D.O.B",
+
+                "email.required" => "Please provide Email",
+                "email.max" => "Too long",
+                "email.min" => "Too short",
+            ]
+        );
+
+        $user = new User();
+        $user->id = str_random(11);
+        $user->password = bcrypt("123");
+        $user->point = 0;
+        $user->is_active = true;
+        $user->role_id = $req->role_id;
+        $user->full_name = $req->full_name;
+        $user->phone = $req->phone;
+        $user->dob = $req->dob;
+        $user->email = $req->email;
+        $user->username = $req->username;
+        $user->save();
+
+        return response(
+            [
+                "user" => $user,
+                "result" => "Create success"
+            ], 200
+        );
+    }
+
     // End Route Webservices Methods
 }

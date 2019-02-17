@@ -1,11 +1,36 @@
 <template>
     <div class="list-user-comp">
-        <div id="page-wrapper">
+
+        <user_create_comp :submit_button="submit_button"
+                          :cancel_button="cancel_button"
+                          v-if="is_show_create"
+                          @is_show_create="catch_is_show_create(...arguments)"
+                          @user_created="catch_user_created(...arguments)"></user_create_comp>
+
+        <div id="page-wrapper" v-else>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
+                        <!-- Notification -->
+                        <notification_comp action="Create"
+                                           module="user"
+                                           v-if="is_success"></notification_comp>
+                        <!-- End Notification -->
+
+                        <!-- Notification -->
+                        <notification_comp action="Delete"
+                                           module="user"
+                                           v-if="is_show_notif"></notification_comp>
+                        <!-- End Notification -->
+
+                        <!-- Alert -->
+                        <alert_comp :list_error="list_error"
+                                    v-else></alert_comp>
+                        <!-- End Alert -->
+
                         <h1 class="page-header">User
-                            <small>List</small>
+                            <small>List - <a role="button"
+                                             v-on:click="showCreate()">{{create_button}}</a></small>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -53,6 +78,9 @@
 
 <script>
     import User from "../user_model";
+    import notification_comp from "./notification_comp";
+    import alert_comp from "./alert_comp";
+    import user_create_comp from "./user_create_comp";
 
     export default {
         name: "user_list_comp",
@@ -60,9 +88,19 @@
             return {
                 user: new User(),
                 list_user: [],
-                is_delete_trigger: false
+                is_delete_trigger: false,
+                list_error: [],
+                is_show_notif: false,
+                is_show_create: false,
+                is_success: false
             }
         },
+
+        props: [
+            "create_button",
+            "submit_button",
+            "cancel_button"
+        ],
 
         created() {
             this.getUserList();
@@ -86,10 +124,13 @@
                     .then(response => {
                             console.log(response);
                             this.is_delete_trigger = true;
+                            this.is_show_notif = true;
                         }
                     )
                     .catch(error => {
-                            console.log(error)
+                            console.log(error);
+                            this.is_show_notif = false;
+                            this.list_error = error.response.data;
                         }
                     );
             },
@@ -97,12 +138,32 @@
             navToUserDetail(user_id) {
                 window.location.replace("admin/user/detail/" + user_id);
             },
+
+            showCreate() {
+                this.is_show_create = true;
+            },
+
+            catch_is_show_create(is_show_create) {
+                this.is_show_create = is_show_create;
+            },
+
+            catch_user_created(user_created, is_success) {
+                this.list_user.push(user_created);
+                this.is_success = is_success
+
+            }
         },
 
         watch: {
             is_delete_trigger() {
                 this.getUserList();
-            }
+            },
+        },
+
+        components: {
+            notification_comp,
+            alert_comp,
+            user_create_comp
         }
     }
 </script>

@@ -55,7 +55,8 @@ Route::group(
                 Route::get("detail/{user_id}", $CONTROLLER_NAME . "getDetailUser");
                 Route::post("detail/{user_id}", $CONTROLLER_NAME . "postUpdateUser");
                 Route::get("list", $CONTROLLER_NAME . "getUserList");
-                Route::get("delete/{user_id}", $CONTROLLER_NAME."getDeleteUser");
+                Route::get("delete/{user_id}", $CONTROLLER_NAME . "getDeleteUser");
+                Route::post("create/", $CONTROLLER_NAME . "postCreateUser");
             }
         );
 
