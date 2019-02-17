@@ -4,6 +4,13 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
+
+                        <notification_comp action="Update"
+                                           module="user"
+                                           v-if="is_show_notif"></notification_comp>
+
+                        <alert_comp :list_error="list_error" v-else></alert_comp>
+
                         <h1 class="page-header">User
                             <small>Detail</small>
                         </h1>
@@ -87,7 +94,7 @@
                                             style="margin-right: 1vh;"
                                             v-on:click="postUpdateUser()">{{submit_button}}
                                     </button>
-                                    <button type="button" class="btn btn-warning" v-on:click="changeEditClicked()">
+                                    <button type="button" class="btn btn-warning" v-on:click="cancelUpdateUser()">
                                         {{cancel_button}}
                                     </button>
                                 </div>
@@ -106,6 +113,8 @@
 <script>
     import User from "../user_model";
     import Role from "../role_model";
+    import notification_comp from "./notification_comp";
+    import alert_comp from "./alert_comp";
 
     export default {
         name: "user_detail_comp",
@@ -114,7 +123,9 @@
                 "is_edit_clicked": false,
                 user: new User(),
                 role: new Role(),
-                list_role: []
+                list_role: [],
+                is_show_notif: false,
+                list_error: []
             }
         },
 
@@ -132,6 +143,11 @@
         methods: {
             changeEditClicked() {
                 this.is_edit_clicked = !this.is_edit_clicked;
+            },
+
+            cancelUpdateUser() {
+                this.changeEditClicked();
+                this.getUserDetail();
             },
 
             getUserDetail() {
@@ -180,10 +196,22 @@
                 ).then(response => {
                         console.log(response.data.user);
                         this.is_edit_clicked = false;
+                        this.is_show_notif = true;
+                    }
+                ).catch(error => {
+                        console.log(error.response.data);
+                        this.list_error = error.response.data;
+                        this.is_show_notif = false;
                     }
                 );
             }
-        }
+        },
+
+        components:
+            {
+                notification_comp,
+                alert_comp
+            }
     }
 </script>
 
