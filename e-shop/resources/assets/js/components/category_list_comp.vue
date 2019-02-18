@@ -28,7 +28,7 @@
                                     v-else></alert_comp>
                         <!-- End Alert -->
 
-                        <h1 class="page-header">User
+                        <h1 class="page-header">Category
                             <small>List - <a role="button"
                                              v-on:click="showCreate()">{{create_button}}</a></small>
                         </h1>
@@ -48,10 +48,10 @@
                             <td>{{category.id}}</td>
                             <td>{{category.name}}</td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i>
-                                <a role="button" v-on:click="getDeleteUser(user.id)">Delete</a>
+                                <a role="button" v-on:click="getDeleteCategory(category.id)">Delete</a>
                             </td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i>
-                                <a role="button" v-on:click="navToUserDetail(user.id)">Edit</a>
+                                <a role="button" v-on:click="navToCategoryDetail(category.id)">Edit</a>
                             </td>
                         </tr>
                         </tbody>
@@ -65,7 +65,6 @@
 </template>
 
 <script>
-    import Category from "../category_model.js";
     import alert_comp from "./alert_comp";
     import notification_comp from "./notification_comp";
 
@@ -106,6 +105,26 @@
                             console.log(error.response.data);
                         }
                     );
+            },
+
+            getDeleteCategory(category_id) {
+                window.axios.get("api/category/delete/" + category_id)
+                    .then(response => {
+                            console.log(response.data);
+                            this.getListCategory();
+                        }
+                    ).catch(error => {
+                        console.log(error.response.data);
+                    }
+                );
+            },
+
+            navToCategoryDetail(category_id) {
+                window.location.replace("admin/category/update/" + category_id);
+            },
+
+            showCreate() {
+                window.location.replace("admin/category/create");
             }
         },
 

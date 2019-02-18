@@ -42,6 +42,10 @@ Route::group(
             function () {
                 $CONTROLLER_NAME = "CategoryController@";
                 Route::get("list", $CONTROLLER_NAME . "showListCategory");
+                Route::get("create", $CONTROLLER_NAME . "showCreateCategoryPage");
+                Route::post("create", $CONTROLLER_NAME . "postCreateCategory");
+                Route::get("update/{category_id}", $CONTROLLER_NAME . "showUpdateCategoryPage");
+                Route::post("update/{category_id}", $CONTROLLER_NAME . "postUpdateCategory");
             }
         );
     }
@@ -87,6 +91,7 @@ Route::group(
             function () {
                 $CONTROLLER_NAME = "CategoryController@";
                 Route::get("list", $CONTROLLER_NAME . "getListCategory");
+                Route::get("delete/{category_id}", $CONTROLLER_NAME . "getDeleteCategory");
             }
         );
     }
