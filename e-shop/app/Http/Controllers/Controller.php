@@ -30,5 +30,6 @@ class Controller extends BaseController
         View::share("EDIT_BUTTON", "Edit");
         View::share("CANCEL_BUTTON", "Cancel");
         View::share("CREATE_BUTTON", "Create");
+        View::share("DELETE_BUTTON", "Delete");
     }
 }

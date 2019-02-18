@@ -48,6 +48,16 @@ Route::group(
                 Route::post("update/{category_id}", $CONTROLLER_NAME . "postUpdateCategory");
             }
         );
+
+        Route::group(
+            [
+                "prefix" => "sub_category"
+            ],
+            function () {
+                $CONTROLLER_NAME = "SubCategoryController@";
+                Route::get("list", $CONTROLLER_NAME . "showListSubCategoryPage");
+            }
+        );
     }
 );
 // End URL Routing Page
