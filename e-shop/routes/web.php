@@ -63,6 +63,21 @@ Route::group(
                 Route::get("delete/{sub_category_id}", $CONTROLLER_NAME . "getDeleteSubCategory");
             }
         );
+
+        Route::group(
+            [
+                "prefix" => "manufacturer"
+            ],
+            function () {
+                $CONTROLLER_NAME = "ManufacturerController@";
+                Route::get("list", $CONTROLLER_NAME . "showListManufacturerPage");
+                Route::get("create", $CONTROLLER_NAME . "showCreateManufacturerPage");
+                Route::post("create", $CONTROLLER_NAME . "postCreateManufacturer");
+                Route::get("update/{manufacturer_id}", $CONTROLLER_NAME . "showUpdateManufacturerPage");
+                Route::post("update/{manufacturer_id}", $CONTROLLER_NAME . "postUpdateManufacturer");
+                Route::get("delete/{manufacturer_id}", $CONTROLLER_NAME . "getDeleteManufacturer");
+            }
+        );
     }
 );
 // End URL Routing Page
