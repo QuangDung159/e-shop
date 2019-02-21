@@ -4,10 +4,32 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Sub Category
-                        <small>List - <a role="button">{{$CREATE_BUTTON}}</a></small>
-                        </small>
 
+                    <div class="notification" style="margin-top: 1vh;">
+                        @if(session("success"))
+                            <div class="alert alert-success alert-dismissible">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                {{session("success")}}
+                            </div>
+                        @endif
+                        @if(session("error"))
+                            <div class="alert alert-danger alert-dismissible">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                {{session("error")}}
+                            </div>
+                        @endif
+                        @if(count($errors) > 0)
+                            <div class="alert alert-danger alert-dismissable">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                @foreach($errors->all() as $item)
+                                    {{$item}}<br>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                    
+                    <h1 class="page-header">Sub Category
+                        <small>List - <a role="button" href="admin/sub_category/create">{{$CREATE_BUTTON}}</a></small>
                     </h1>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -27,9 +49,12 @@
                             <td>{{$sub_category->id}}</td>
                             <td>{{$sub_category->name}}</td>
                             <td>{{$sub_category->category->name}}</td>
-                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#">{{$DELETE_BUTTON}}</a>
+                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i>
+                                <a href="admin/sub_category/delete/{{$sub_category->id}}">{{$DELETE_BUTTON}}</a>
                             </td>
-                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">{{$EDIT_BUTTON}}</a></td>
+                            <td class="center"><i class="fa fa-pencil fa-fw"></i>
+                                <a href="admin/sub_category/update/{{$sub_category->id}}">{{$EDIT_BUTTON}}</a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

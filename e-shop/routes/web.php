@@ -56,6 +56,11 @@ Route::group(
             function () {
                 $CONTROLLER_NAME = "SubCategoryController@";
                 Route::get("list", $CONTROLLER_NAME . "showListSubCategoryPage");
+                Route::get("create", $CONTROLLER_NAME . "showCreateSubCategoryPage");
+                Route::post("create", $CONTROLLER_NAME . "postCreateSubCategory");
+                Route::get("update/{sub_category_id}", $CONTROLLER_NAME . "showUpdateSubCategoryPage");
+                Route::post("update/{sub_category_id}", $CONTROLLER_NAME . "postUpdateSubCategory");
+                Route::get("delete/{sub_category_id}", $CONTROLLER_NAME . "getDeleteSubCategory");
             }
         );
     }
