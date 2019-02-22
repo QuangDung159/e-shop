@@ -78,6 +78,21 @@ Route::group(
                 Route::get("delete/{manufacturer_id}", $CONTROLLER_NAME . "getDeleteManufacturer");
             }
         );
+
+        Route::group(
+            [
+                "prefix" => "product"
+            ],
+            function () {
+                $CONTROLLER_NAME = "ProductController@";
+                Route::get("list", $CONTROLLER_NAME . "showListProductPage");
+                Route::get("create", $CONTROLLER_NAME . "showCreateProductPage");
+                Route::post("create", $CONTROLLER_NAME . "postCreateProduct");
+                Route::get("update/{product_id}", $CONTROLLER_NAME . "showUpdateProductPage");
+                Route::post("update/{product_id}", $CONTROLLER_NAME . "postUpdateProduct");
+                Route::get("delete/{product_id}", $CONTROLLER_NAME . "getDeleteProduct");
+            }
+        );
     }
 );
 // End URL Routing Page
