@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sun, 17 Feb 2019 02:11:17 +0000.
+ * Date: Sat, 23 Feb 2019 06:10:21 +0000.
  */
 
 namespace App\Models;
@@ -30,7 +30,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \App\Models\SubCategory $sub_category
  * @property \Illuminate\Database\Eloquent\Collection $cart_details
  * @property \Illuminate\Database\Eloquent\Collection $comments
- * @property \Illuminate\Database\Eloquent\Collection $images
+ * @property \Illuminate\Database\Eloquent\Collection $galleries
  *
  * @package App\Models
  */
@@ -80,9 +80,8 @@ class Product extends Eloquent
 		return $this->hasMany(\App\Models\Comment::class);
 	}
 
-	public function images()
+	public function galleries()
 	{
-		return $this->belongsToMany(\App\Models\Image::class, 'product_image')
-					->withTimestamps();
+		return $this->hasMany(\App\Models\Gallery::class);
 	}
 }

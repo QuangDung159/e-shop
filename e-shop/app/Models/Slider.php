@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 23 Feb 2019 06:10:21 +0000.
+ * Date: Sat, 23 Feb 2019 06:10:22 +0000.
  */
 
 namespace App\Models;
@@ -10,21 +10,21 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class Category
+ * Class Slider
  * 
  * @property string $id
  * @property string $name
+ * @property string $link
  * @property bool $is_active
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * 
- * @property \Illuminate\Database\Eloquent\Collection $sub_categories
+ * @property string $path
  *
  * @package App\Models
  */
-class Category extends Eloquent
+class Slider extends Eloquent
 {
-	protected $table = 'category';
+	protected $table = 'slider';
 	public $incrementing = false;
 
 	protected $casts = [
@@ -33,11 +33,8 @@ class Category extends Eloquent
 
 	protected $fillable = [
 		'name',
-		'is_active'
+		'link',
+		'is_active',
+		'path'
 	];
-
-	public function sub_categories()
-	{
-		return $this->hasMany(\App\Models\SubCategory::class);
-	}
 }

@@ -30,43 +30,22 @@
                         </div>
 
                         <!-- User Detail -->
-                        <h1 class="page-header">Product
+                        <h1 class="page-header">Slider
                             <small>Create</small>
                             <small style="float: right">
-                                <a role="button" href="admin/product/list">Back To List</a>
+                                <a role="button" href="admin/slider/list">Back To List</a>
                             </small>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
                     <div class="row">
                         <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
-                            <form action="admin/product/create" method="POST" enctype="multipart/form-data">
+                            <form action="admin/slider/create" method="POST">
                                 {{csrf_field()}}
                                 <div class="form-group">
-                                    <label>Product Name</label>
-                                    <input class="form-control" name="product_name"
-                                           placeholder="Please Enter Product Name"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Price (VND)</label>
-                                    <input type="number" class="form-control" name="product_price"
-                                           placeholder="Please Enter Product Price"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Sub Category Name</label>
-                                    <select class="form-control" name="sub_category_id">
-                                        @foreach($list_sub_category as $item)
-                                            <option value="{{$item->id}}">{{$item->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Manufacturer Name</label>
-                                    <select class="form-control" name="manufacturer_id">
-                                        @foreach($list_manu as $item)
-                                            <option value="{{$item->id}}">{{$item->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <label>Slider Name</label>
+                                    <input class="form-control" name="sub_category_name"
+                                           placeholder="Please Enter Sub Category Name"/>
                                 </div>
                                 @if(session("invalid_type"))
                                     <div class="alert alert-danger">
@@ -75,13 +54,13 @@
                                 @endif
                                 <div class="form-group" name="thumbnail">
                                     {{-- thêm thuộc tính enctype="multipart/form-data" ở <form> --}}
-                                    <label>Thumbnail</label>
+                                    <label>Preview</label>
                                     <input
                                             name="thumbnail"
                                             type="file" class="form-control"
                                             id="thumbnail">
                                 </div>
-                                <img id="preview_upload_img" class="preview-img" width="100px">
+                                <img id="preview_upload_img" class="preview-img">
                                 <hr>
                                 <button type="submit" class="btn btn-default">{{$SUBMIT_BUTTON}}</button>
                                 <button type="reset" class="btn btn-default">{{$CANCEL_BUTTON}}</button>

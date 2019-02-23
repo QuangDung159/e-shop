@@ -10,21 +10,22 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class Category
+ * Class Gallery
  * 
- * @property string $id
- * @property string $name
+ * @property string $product_id
+ * @property string $image_id
  * @property bool $is_active
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * 
- * @property \Illuminate\Database\Eloquent\Collection $sub_categories
+ * @property \App\Models\Image $image
+ * @property \App\Models\Product $product
  *
  * @package App\Models
  */
-class Category extends Eloquent
+class Gallery extends Eloquent
 {
-	protected $table = 'category';
+	protected $table = 'gallery';
 	public $incrementing = false;
 
 	protected $casts = [
@@ -32,12 +33,16 @@ class Category extends Eloquent
 	];
 
 	protected $fillable = [
-		'name',
 		'is_active'
 	];
 
-	public function sub_categories()
+	public function image()
 	{
-		return $this->hasMany(\App\Models\SubCategory::class);
+		return $this->belongsTo(\App\Models\Image::class);
+	}
+
+	public function product()
+	{
+		return $this->belongsTo(\App\Models\Product::class);
 	}
 }

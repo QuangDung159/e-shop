@@ -81,6 +81,21 @@ Route::group(
 
         Route::group(
             [
+                "prefix" => "slider"
+            ],
+            function () {
+                $CONTROLLER_NAME = "SliderController@";
+                Route::get("list", $CONTROLLER_NAME . "showListSliderPage");
+                Route::get("create", $CONTROLLER_NAME . "showCreateSliderPage");
+                Route::post("create", $CONTROLLER_NAME . "postCreateSlider");
+                Route::get("update/{slider_id}", $CONTROLLER_NAME . "showUpdateSliderPage");
+                Route::post("update/{slider_id}", $CONTROLLER_NAME . "postUpdateSlider");
+                Route::get("delete/{slider_id}", $CONTROLLER_NAME . "getDeleteSlider");
+            }
+        );
+
+        Route::group(
+            [
                 "prefix" => "product"
             ],
             function () {

@@ -13,6 +13,7 @@ class ProductController extends Controller
 {
     private $ADMIN_PRODUCT_DIRECTORY = "admin.page.product.";
     private $ADMIN_PRODUCT_URL = "admin/product/";
+    private $IMAGE_PATH = "image/";
 
     public function showListProductPage()
     {
@@ -59,6 +60,24 @@ class ProductController extends Controller
         $product->manufacturer_id = $request->manufacturer_id;
         $product->sub_category_id = $request->sub_category_id;
         $product->description = "Xin lỗi! Không có thông tin về sản phẩm này.";
+
+        if ($request->hasFile("thumbnail")) {
+            $file = $request->file("thumbnail");
+            // get file extension
+            $file_ext = $file->getClientOriginalExtension();
+            if ($file_ext != "jpg" && $file_ext != "png" && $file_ext != "jpeg") {
+                return redirect($this->ADMIN_PRODUCT_URL . "invalid_type", "Invalid type");
+            } else {
+                // get file name
+                $file_name = $file->getClientOriginalName();
+                $file_name_to_save = str_random(11) . $file_name;
+                while (file_exists($this->IMAGE_PATH . $file_name_to_save)) {
+                    $file_name_to_save = str_random(11) . $file_name;
+                }
+                $product->thumbnail = $file_name_to_save;
+                $file->move($this->IMAGE_PATH, $file_name_to_save);
+            }
+        }
         $product->save();
 
         return redirect($this->ADMIN_PRODUCT_URL . "add_description/" . $product->id)
@@ -133,6 +152,30 @@ class ProductController extends Controller
             $product->price = $request->product_price;
             $product->manufacturer_id = $request->manufacturer_id;
             $product->sub_category_id = $request->sub_category_id;
+            if ($request->hasFile("thumbnail")) {
+                $file = $request->file("thumbnail");
+                // get file extension
+                $file_ext = $file->getClientOriginalExtension();
+                if ($file_ext != "jpg" && $file_ext != "png" && $file_ext != "jpeg") {
+                    return redirect($this->ADMIN_PRODUCT_URL . "update/" . $product_id)
+                        ->with("invalid_type", "Invalid type");
+                } else {
+                    // get file name
+                    $file_name = $file->getClientOriginalName();
+                    Log::info($file_name);
+                    $file_name_to_save = str_random(11) . $file_name;
+                    while (file_exists($this->IMAGE_PATH . $file_name_to_save)) {
+                        $file_name_to_save = str_random(11) . $file_name;
+                    }
+                    if ($product->thumbnail != "no_image_available.png") {
+                        unlink($this->IMAGE_PATH . "/" . $product->thumbnail);
+                    }
+                    $product->thumbnail = $file_name_to_save;
+
+                    // move file to restore
+                    $file->move($this->IMAGE_PATH, $file_name_to_save);
+                }
+            }
             $product->save();
 
             return redirect($this->ADMIN_PRODUCT_URL . "update/" . $product_id)
