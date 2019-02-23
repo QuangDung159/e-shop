@@ -96,6 +96,21 @@ Route::group(
 
         Route::group(
             [
+                "prefix" => "image"
+            ],
+            function () {
+                $CONTROLLER_NAME = "ImageController@";
+                Route::get("list", $CONTROLLER_NAME . "showListImagePage");
+                Route::get("create", $CONTROLLER_NAME . "showCreateImagePage");
+                Route::post("create", $CONTROLLER_NAME . "postCreateImage");
+                Route::get("update/{image_id}", $CONTROLLER_NAME . "showUpdateImagePage");
+                Route::post("update/{image_id}", $CONTROLLER_NAME . "postUpdateImage");
+                Route::get("delete/{image_id}", $CONTROLLER_NAME . "getDeleteImage");
+            }
+        );
+
+        Route::group(
+            [
                 "prefix" => "product"
             ],
             function () {
