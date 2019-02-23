@@ -36,15 +36,11 @@
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                     <tr align="center">
-                        <th>Product ID</th>
-                        <th>Product Name</th>
-                        <th>Thumbnail</th>
+                        <th>ID</th>
+                        <th>Name</th>
                         <th>Price</th>
-                        <th>Buyed</th>
-                        <th>Views</th>
-                        <th>Rate</th>
-                        <th>Sub Category Name</th>
-                        <th>Manufacturer Name</th>
+                        <th>Sub Category</th>
+                        <th>Manufacturer</th>
                         <th>Delete</th>
                         <th>Edit</th>
                     </tr>
@@ -54,11 +50,7 @@
                         <tr class="even gradeC">
                             <td>{{$item->id}}</td>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->thumbnail}}</td>
                             <td>{{$item->price}}</td>
-                            <td>{{$item->buyed}}</td>
-                            <td>{{$item->views}}</td>
-                            <td>{{$item->rate}}</td>
                             <td>{{$item->sub_category->name}}</td>
                             <td>{{$item->manufacturer->name}}</td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i>

@@ -24,3 +24,5 @@
         });
     });
 </script>
+
+<script type="text/javascript" language="javascript" src="{{$DIRECTORY_ADMIN_ASSET}}ckeditor/ckeditor.js"></script>

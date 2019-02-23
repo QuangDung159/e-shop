@@ -87,6 +87,10 @@ Route::group(
                 $CONTROLLER_NAME = "ProductController@";
                 Route::get("list", $CONTROLLER_NAME . "showListProductPage");
                 Route::get("create", $CONTROLLER_NAME . "showCreateProductPage");
+                Route::get("add_description/{product_id}", $CONTROLLER_NAME . "showAddDescriptionPage");
+                Route::post("add_description/{product_id}", $CONTROLLER_NAME . "postAddDescription");
+                Route::get("update_description/{product_id}", $CONTROLLER_NAME . "showUpdateDescription");
+                Route::post("update_description/{product_id}", $CONTROLLER_NAME . "postUpdateDescription");
                 Route::post("create", $CONTROLLER_NAME . "postCreateProduct");
                 Route::get("update/{product_id}", $CONTROLLER_NAME . "showUpdateProductPage");
                 Route::post("update/{product_id}", $CONTROLLER_NAME . "postUpdateProduct");
