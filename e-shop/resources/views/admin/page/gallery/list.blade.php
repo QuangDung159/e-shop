@@ -28,7 +28,7 @@
                         @endif
                     </div>
 
-                    <h1 class="page-header">Image
+                    <h1 class="page-header">Gallery
                         <small>List - <a role="button" href="admin/gallery/create">{{$CREATE_BUTTON}}</a></small>
                     </h1>
                 </div>
@@ -36,24 +36,26 @@
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                     <tr align="center">
-                        <th>Image ID</th>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
                         <th>Image Preview</th>
                         <th>Delete</th>
                         <th>Edit</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($list_image as $item)
+                    @foreach($list_gallery as $item)
                         <tr class="even gradeC">
-                            <td>{{$item->id}}</td>
+                            <td>{{$item->product_id}}</td>
+                            <td>{{$item->product->name}}</td>
                             <td>
-                                <img width="150px" src="{{$IMAGE_PATH}}/{{$item->path}}"/>
+                                <img width="150px" src="{{$IMAGE_PATH}}/{{$item->image->path}}"/>
                             </td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i>
-                                <a href="admin/image/delete/{{$item->id}}">{{$DELETE_BUTTON}}</a>
+                                <a href="admin/gallery/delete/{{$item->id}}">{{$DELETE_BUTTON}}</a>
                             </td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i>
-                                <a href="admin/image/update/{{$item->id}}">{{$EDIT_BUTTON}}</a>
+                                <a href="admin/gallery/update/{{$item->id}}">{{$EDIT_BUTTON}}</a>
                             </td>
                         </tr>
                     @endforeach

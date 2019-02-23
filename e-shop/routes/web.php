@@ -111,6 +111,21 @@ Route::group(
 
         Route::group(
             [
+                "prefix" => "gallery"
+            ],
+            function () {
+                $CONTROLLER_NAME = "GalleryController@";
+                Route::get("list", $CONTROLLER_NAME . "showListGalleryPage");
+                Route::get("create", $CONTROLLER_NAME . "showCreateGalleryPage");
+                Route::post("create", $CONTROLLER_NAME . "postCreateGallery");
+                Route::get("update/{gallery_id}", $CONTROLLER_NAME . "showUpdateGalleryPage");
+                Route::post("update/{gallery_id}", $CONTROLLER_NAME . "postUpdateGallery");
+                Route::get("delete/{gallery_id}", $CONTROLLER_NAME . "getDeleteGallery");
+            }
+        );
+
+        Route::group(
+            [
                 "prefix" => "product"
             ],
             function () {

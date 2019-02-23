@@ -22,6 +22,10 @@ Vue.component("user-list-comp", require("./components/user_list_comp"));
 
 Vue.component("category-list-comp", require("./components/category_list_comp"));
 
+Vue.component("list-image-comp", require("./components/list_image_comp"));
+
+Vue.component("list-image-product-comp", require("./components/list_image_product_comp"));
+
 import moment from "moment";
 
 Vue.filter("format_DDMMYYYY", function (datetime) {
