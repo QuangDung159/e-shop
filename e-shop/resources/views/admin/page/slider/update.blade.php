@@ -31,7 +31,7 @@
 
                         <!-- User Detail -->
                         <h1 class="page-header">Slider
-                            <small>Create</small>
+                            <small>Update</small>
                             <small style="float: right">
                                 <a role="button" href="admin/slider/list">Back To List</a>
                             </small>
@@ -40,18 +40,20 @@
                     <!-- /.col-lg-12 -->
                     <div class="row">
                         <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
-                            <form action="admin/slider/create" method="POST"
+                            <form action="admin/slider/update/{{$slider->id}}" method="POST"
                                   enctype="multipart/form-data">
                                 {{csrf_field()}}
                                 <div class="form-group">
                                     <label>Slider Name</label>
                                     <input class="form-control" name="slider_name"
+                                           value="{{$slider->name}}"
                                            placeholder="Please Enter Slider Name"/>
                                 </div>
                                 <div class="form-group">
                                     <label>Slider Link</label>
                                     <input class="form-control" name="slider_link"
-                                           placeholder="Please Enter Slider Path"/>
+                                           value="{{$slider->link}}"
+                                           placeholder="Please Enter Slider Link"/>
                                 </div>
                                 @if(session("invalid_type"))
                                     <div class="alert alert-danger">
@@ -67,7 +69,8 @@
                                             id="thumbnail">
                                 </div>
                                 <img id="preview_upload_img" class="preview-img"
-                                     width="400px">
+                                     width="400px" src="{{$IMAGE_PATH}}/slide/{{$slider->path}}">
+                                <p>{{$slider->path}}</p>
                                 <hr>
                                 <button type="submit" class="btn btn-default">{{$SUBMIT_BUTTON}}</button>
                                 <button type="reset" class="btn btn-default">{{$CANCEL_BUTTON}}</button>

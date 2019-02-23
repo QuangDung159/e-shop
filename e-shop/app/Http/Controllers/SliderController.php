@@ -9,6 +9,7 @@ class SliderController extends Controller
 {
     private $ADMIN_SLIDER_DIRECTORY = "admin.page.slider.";
     private $ADMIN_SLIDER_URL = "admin/slider/";
+    private $IMAGE_PATH = "image/slide/";
 
     public function showListSliderPage()
     {
@@ -25,83 +26,136 @@ class SliderController extends Controller
         return view($this->ADMIN_SLIDER_DIRECTORY . "create");
     }
 
-    public function postCreateManufacturer(Request $request)
+    public function postCreateSlider(Request $request)
     {
         $this->validate($request,
             [
-                "manufacturer_name" => "required|min:3|max:255"
+                "slider_name" => "required|min:3|max:255",
+                "slider_link" => "required|min:3|max:255"
             ],
             [
-                "manufacturer.required" => "Please provide Manufacturer Name",
-                "manufacturer.max" => "Too long",
-                "manufacturer.min" => "too short"
+                "slider_name.required" => "Please provide Slider Name",
+                "slider_name.max" => "Too long",
+                "slider_name.min" => "too short",
+
+                "slider_link.required" => "Please provide Slider Link",
+                "slider_link.max" => "Too long",
+                "slider_link.min" => "Too short"
             ]
         );
 
-        $manufacturer = new Manufacturer();
-        $manufacturer->name = $request->manufacturer_name;
-        $manufacturer->id = str_random(11);
-        $manufacturer->save();
+        $slider = new Slider();
+        $slider->name = $request->slider_name;
+        $slider->link = $request->slider_link;
+        $slider->id = str_random(11);
 
-        return redirect($this->ADMIN_MANUFACTURER_URL . "create")
-            ->with("success", "Create Manufacturer successfully");
+        if ($request->hasFile("thumbnail")) {
+            $file = $request->file("thumbnail");
+            // get file extension
+            $file_ext = $file->getClientOriginalExtension();
+            if ($file_ext != "png" && $file_ext != "jpeg" && $file_ext != "jpg") {
+                return redirect($this->ADMIN_SLIDER_URL . "create");
+            } else {
+                // get file name
+                $file_name = $file->getClientOriginalName();
+                $file_name_to_save = str_random(11) . $file_name;
+                while (file_exists($this->IMAGE_PATH . $file_name_to_save)) {
+                    $file_name_to_save = str_random(11) . $file_name;
+                }
+                $slider->path = $file_name_to_save;
+                $file->move($this->IMAGE_PATH, $file_name_to_save);
+            }
+        }
+
+        $slider->save();
+
+        return redirect($this->ADMIN_SLIDER_URL . "create")
+            ->with("success", "Create Slider successfully");
     }
 
-    public function showUpdateManufacturerPage($manufacturer_id)
+    public function showUpdateSliderPage($slider_id)
     {
-        $manu = Manufacturer::find($manufacturer_id)
+        $slider = Slider::where("id", $slider_id)
             ->where("is_active", true)->get()[0];
-        if (isset($manu)) {
-            return view($this->ADMIN_MANUFACTURER_DIRECTORY . "update",
+        if (isset($slider)) {
+            return view($this->ADMIN_SLIDER_DIRECTORY . "update",
                 [
-                    "manu" => $manu
+                    "slider" => $slider
                 ]
             );
         } else {
-            return redirect($this->ADMIN_MANUFACTURER_URL . "list")
-                ->with("error", "Manufacturer ID not exist");
+            return redirect($this->ADMIN_SLIDER_URL . "list")
+                ->with("error", "Slider ID not exist");
         }
     }
 
-    public function postUpdateManufacturer($manufacturer_id, Request $request)
+    public function postUpdateSlider($slider_id, Request $request)
     {
-        $manu = Manufacturer::find($manufacturer_id)
+        $slider = Slider::where("id", $slider_id)
             ->where("is_active", true)->get()[0];
-        if (isset($manu)) {
+        if (isset($slider)) {
             $this->validate($request,
                 [
-                    "manufacturer_name" => "required|min:3|max:255"
+                    "slider_name" => "required|min:3|max:255",
+                    "slider_link" => "required|min:3|max:255"
                 ],
                 [
-                    "manufacturer.required" => "Please provide Manufacturer Name",
-                    "manufacturer.max" => "Too long",
-                    "manufacturer.min" => "too short"
+                    "slider_name.required" => "Please provide Slider Name",
+                    "slider_name.max" => "Too long",
+                    "slider_name.min" => "too short",
+
+                    "slider_link.required" => "Please provide Slider Link",
+                    "slider_link.max" => "Too long",
+                    "slider_link.min" => "Too short"
                 ]
             );
 
-            $manu->name = $request->manufacturer_name;
-            $manu->save();
+            $slider->name = $request->slider_name;
+            $slider->link = $request->slider_link;
 
-            return redirect($this->ADMIN_MANUFACTURER_URL . "update/" . $manufacturer_id)
-                ->with("success", "Update Manufacturer successfully");
+            if ($request->hasFile("thumbnail")) {
+                $file = $request->file("thumbnail");
+                // get file extension
+                $file_ext = $file->getClientOriginalExtension();
+                if ($file_ext != "jpg" && $file_ext != "jpeg" && $file_ext != "png") {
+                    return redirect($this->ADMIN_SLIDER_URL . "update")
+                        ->with("invalid_type", "Invalid type");
+                } else {
+                    // get file name
+                    $file_name = $file->getClientOriginalName();
+                    $file_name_to_save = str_random(11) . $file_name;
+                    while (file_exists($this->IMAGE_PATH . $file_name_to_save)) {
+                        $file_name_to_save = str_random(11) . $file_name;
+                    }
+                    if ($slider->path != "no_image.png") {
+                        unlink($this->IMAGE_PATH . $slider->path);
+                    }
+                    $slider->path = $file_name_to_save;
+                    $file->move($this->IMAGE_PATH, $file_name_to_save);
+                }
+            }
+
+            $slider->save();
+            return redirect($this->ADMIN_SLIDER_URL . "update/" . $slider_id)
+                ->with("success", "Update Slider successfully");
         } else {
-            return redirect($this->ADMIN_MANUFACTURER_URL . "list")
-                ->with("error", "Manufacturer ID not exist");
+            return redirect($this->ADMIN_slider_URL . "list")
+                ->with("error", "Slider ID not exist");
         }
     }
 
-    public function getDeleteManufacturer($manufacturer_id)
+    public function getDeleteSlider($slider_id)
     {
-        $manu = Manufacturer::find($manufacturer_id)
+        $slider = Slider::where("id", $slider_id)
             ->where("is_active", true)->get()[0];
-        if (isset($manu)) {
-            $manu->is_active = false;
-            $manu->save();
-            return redirect($this->ADMIN_MANUFACTURER_URL . "list")
-                ->with("success", "Delete Manufacturer successfully");
+        if (isset($slider)) {
+            $slider->is_active = false;
+            $slider->save();
+            return redirect($this->ADMIN_SLIDER_URL . "list")
+                ->with("success", "Delete Slider successfully");
         } else {
-            return redirect($this->ADMIN_MANUFACTURER_URL . "list")
-                ->with("error", "Manufacturer ID not exist");
+            return redirect($this->ADMIN_SLIDER_URL . "list")
+                ->with("error", "Slider ID not exist");
         }
     }
 }
