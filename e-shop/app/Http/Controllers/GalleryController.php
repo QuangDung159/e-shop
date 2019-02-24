@@ -6,8 +6,8 @@ use App\Models\Gallery;
 use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Collection;
 
 class GalleryController extends Controller
 {
@@ -30,7 +30,10 @@ class GalleryController extends Controller
     public function showCreateGalleryPage()
     {
         $list_product = Product::where("is_active", true)->get();
-        $list_image = Image::all();
+        $list_image = DB::select("select i.* from image i left join gallery g on i.id = g.image_id where g.image_id is null");
+        foreach ($list_image as $image) {
+            Log::info("image id : " .$image->id);
+        }
         return view($this->ADMIN_GALLERY_DIRECTORY . "create",
             [
                 "list_product" => $list_product,

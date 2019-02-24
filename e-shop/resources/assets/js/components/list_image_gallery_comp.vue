@@ -80,11 +80,15 @@
                 );
 
                 // delete item
-                if (index >= 0) {
+                // check count image
+                if (this.list_image_to_add.length < 4) {
+                    if (index >= 0) {
                     this.list_image_data.splice(index, 1);
                 }
-
-                this.list_image_to_add.unshift(image);
+                    this.list_image_to_add.unshift(image);
+                } else {
+                    alert("Sorry! Too much");
+                }
             },
 
             catch_image(image) {

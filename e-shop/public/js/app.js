@@ -64277,7 +64277,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -64288,6 +64288,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -64368,19 +64370,21 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("td", { staticClass: "center" }, [
-                _c("i", { staticClass: "fa fa-pencil fa-fw" }),
-                _vm._v(" "),
                 _c(
-                  "a",
+                  "button",
                   {
-                    attrs: { role: "button" },
+                    staticClass: "btn btn-default",
+                    attrs: { type: "button" },
                     on: {
                       click: function($event) {
                         return _vm.addImageToProduct(item)
                       }
                     }
                   },
-                  [_vm._v("Add")]
+                  [
+                    _vm._v("Add "),
+                    _c("i", { staticClass: "fa fa-arrow-right" })
+                  ]
                 )
               ])
             ])
@@ -64502,7 +64506,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -64513,6 +64517,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -64593,19 +64600,21 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("td", { staticClass: "center" }, [
-                _c("i", { staticClass: "fa fa-pencil fa-fw" }),
-                _vm._v(" "),
                 _c(
-                  "a",
+                  "button",
                   {
-                    attrs: { role: "button" },
+                    staticClass: "btn btn-default",
+                    attrs: { type: "button" },
                     on: {
                       click: function($event) {
                         return _vm.removeImage(item)
                       }
                     }
                   },
-                  [_vm._v("Remove")]
+                  [
+                    _c("i", { staticClass: "fa fa-arrow-left" }),
+                    _vm._v(" Remove\n                ")
+                  ]
                 )
               ])
             ])
@@ -64742,7 +64751,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -64835,11 +64844,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
 
             // delete item
-            if (index >= 0) {
-                this.list_image_data.splice(index, 1);
+            // check count image
+            if (this.list_image_to_add.length < 4) {
+                if (index >= 0) {
+                    this.list_image_data.splice(index, 1);
+                }
+                this.list_image_to_add.unshift(image);
+            } else {
+                alert("Sorry! Too much");
             }
-
-            this.list_image_to_add.unshift(image);
         },
         catch_image: function catch_image(image) {
             var _this2 = this;

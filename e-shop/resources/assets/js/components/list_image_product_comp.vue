@@ -15,8 +15,11 @@
                 <td>
                     <img width="150px" :src="image_path + '/' + item.path"/>
                 </td>
-                <td class="center"><i class="fa fa-pencil fa-fw"></i>
-                    <a role="button" v-on:click="removeImage(item)">Remove</a>
+                <td class="center">
+                    <button type="button" v-on:click="removeImage(item)"
+                            class="btn btn-default">
+                        <i class="fa fa-arrow-left"></i>&nbspRemove
+                    </button>
                 </td>
             </tr>
             </tbody>
