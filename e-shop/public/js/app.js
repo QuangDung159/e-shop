@@ -18357,7 +18357,7 @@ var Role = function Role(id, name) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(146);
-module.exports = __webpack_require__(208);
+module.exports = __webpack_require__(218);
 
 
 /***/ }),
@@ -18392,9 +18392,11 @@ Vue.component("user-list-comp", __webpack_require__(193));
 
 Vue.component("category-list-comp", __webpack_require__(203));
 
-Vue.component("list-image-comp", __webpack_require__(218));
+Vue.component("list-image-comp", __webpack_require__(208));
 
-Vue.component("list-image-product-comp", __webpack_require__(223));
+Vue.component("list-image-product-comp", __webpack_require__(213));
+
+Vue.component("list-image-gallery-comp", __webpack_require__(228));
 
 
 
@@ -64191,33 +64193,18 @@ if (false) {
 
 /***/ }),
 /* 208 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 209 */,
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */,
-/* 214 */,
-/* 215 */,
-/* 216 */,
-/* 217 */,
-/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(219)
+  __webpack_require__(209)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(221)
+var __vue_script__ = __webpack_require__(211)
 /* template */
-var __vue_template__ = __webpack_require__(222)
+var __vue_template__ = __webpack_require__(212)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -64256,13 +64243,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 219 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(220);
+var content = __webpack_require__(210);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -64282,7 +64269,7 @@ if(false) {
 }
 
 /***/ }),
-/* 220 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -64290,13 +64277,13 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 221 */
+/* 211 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64325,54 +64312,84 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "list_image_comp",
+
     data: function data() {
         return {
             list_image_data: this.list_image
         };
     },
 
-    props: ["list_image", "image_path"]
+
+    props: ["list_image", "image_path"],
+
+    methods: {
+        addImageToProduct: function addImageToProduct(image) {
+            this.$emit("imageToAdd", image);
+        }
+    }
 });
 
 /***/ }),
-/* 222 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "table",
-    {
-      staticClass: "table table-striped table-bordered table-hover",
-      attrs: { id: "dataTables-example" }
-    },
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.list_image_data, function(item) {
-          return _c("tr", { staticClass: "even gradeC" }, [
-            _c("td", [_vm._v(_vm._s(item.id))]),
-            _vm._v(" "),
-            _c("td", [
-              _c("img", {
-                attrs: { width: "150px", src: _vm.image_path + "/" + item.path }
-              })
-            ]),
-            _vm._v(" "),
-            _vm._m(1, true)
-          ])
-        }),
-        0
-      )
-    ]
-  )
+  return _c("div", { staticClass: "list-image-comp" }, [
+    _c(
+      "table",
+      {
+        staticClass: "table table-striped table-bordered table-hover",
+        attrs: { id: "dataTables-example" }
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.list_image_data, function(item) {
+            return _c("tr", { staticClass: "even gradeC" }, [
+              _c("td", [_vm._v(_vm._s(item.id))]),
+              _vm._v(" "),
+              _c("td", [
+                _c("img", {
+                  attrs: {
+                    width: "150px",
+                    src: _vm.image_path + "/" + item.path
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "center" }, [
+                _c("i", { staticClass: "fa fa-pencil fa-fw" }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: { role: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.addImageToProduct(item)
+                      }
+                    }
+                  },
+                  [_vm._v("Add")]
+                )
+              ])
+            ])
+          }),
+          0
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -64388,16 +64405,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Add to list")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "center" }, [
-      _c("i", { staticClass: "fa fa-pencil fa-fw" }),
-      _vm._v(" "),
-      _c("a", [_vm._v("Add")])
-    ])
   }
 ]
 render._withStripped = true
@@ -64410,19 +64417,19 @@ if (false) {
 }
 
 /***/ }),
-/* 223 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(224)
+  __webpack_require__(214)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(226)
+var __vue_script__ = __webpack_require__(216)
 /* template */
-var __vue_template__ = __webpack_require__(227)
+var __vue_template__ = __webpack_require__(217)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -64461,13 +64468,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 224 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(225);
+var content = __webpack_require__(215);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -64487,7 +64494,7 @@ if(false) {
 }
 
 /***/ }),
-/* 225 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -64495,13 +64502,13 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 226 */
+/* 216 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64530,50 +64537,84 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "list_image_comp",
+
     data: function data() {
         return {
-            list_image: this.list_image
+            list_image_to_add_data: this.list_image_to_add
         };
     },
 
-    props: ["list_image", "IMAGE_PATH"]
+
+    props: ["image_path", "list_image_to_add"],
+
+    methods: {
+        removeImage: function removeImage(image) {
+            this.$emit("image", image);
+        }
+    }
 });
 
 /***/ }),
-/* 227 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "table",
-    {
-      staticClass: "table table-striped table-bordered table-hover",
-      attrs: { id: "dataTables-example" }
-    },
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.list_image, function(item) {
-          return _c("tr", { staticClass: "even gradeC" }, [
-            _c("td", [_vm._v(_vm._s(item.id))]),
-            _vm._v(" "),
-            _vm._m(1, true),
-            _vm._v(" "),
-            _vm._m(2, true)
-          ])
-        }),
-        0
-      )
-    ]
-  )
+  return _c("div", { staticClass: "list-image-product-comp" }, [
+    _c(
+      "table",
+      {
+        staticClass: "table table-striped table-bordered table-hover",
+        attrs: { id: "dataTables-example" }
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.list_image_to_add_data, function(item) {
+            return _c("tr", { staticClass: "even gradeC" }, [
+              _c("td", [_vm._v(_vm._s(item.id))]),
+              _vm._v(" "),
+              _c("td", [
+                _c("img", {
+                  attrs: {
+                    width: "150px",
+                    src: _vm.image_path + "/" + item.path
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "center" }, [
+                _c("i", { staticClass: "fa fa-pencil fa-fw" }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: { role: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.removeImage(item)
+                      }
+                    }
+                  },
+                  [_vm._v("Remove")]
+                )
+              ])
+            ])
+          }),
+          0
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -64589,22 +64630,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Add to list")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("img", { attrs: { width: "150px", src: "/" } })])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "center" }, [
-      _c("i", { staticClass: "fa fa-pencil fa-fw" }),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "admin/image/update/" } }, [_vm._v("Add")])
-    ])
   }
 ]
 render._withStripped = true
@@ -64613,6 +64638,369 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-3e0dba3d", module.exports)
+  }
+}
+
+/***/ }),
+/* 218 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(229)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(231)
+/* template */
+var __vue_template__ = __webpack_require__(232)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-2a950f3a"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/list_image_gallery_comp.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2a950f3a", Component.options)
+  } else {
+    hotAPI.reload("data-v-2a950f3a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(230);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("744a8332", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a950f3a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./list_image_gallery_comp.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a950f3a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./list_image_gallery_comp.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 230 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 231 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__list_image_comp__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__list_image_comp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__list_image_comp__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__list_image_product_comp__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__list_image_product_comp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__list_image_product_comp__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "list_image_gallery_comp",
+
+    data: function data() {
+        return {
+            list_image_data: this.list_image,
+            list_image_to_add: [],
+            image: "",
+            image_remove: "",
+            product_id_data: "",
+            list_product_data: this.list_product
+        };
+    },
+
+
+    props: ["list_image", "image_path", "submit_button", "cancel_button", "list_product"],
+
+    components: {
+        list_image_product_comp: __WEBPACK_IMPORTED_MODULE_1__list_image_product_comp___default.a,
+        list_image_comp: __WEBPACK_IMPORTED_MODULE_0__list_image_comp___default.a
+    },
+
+    methods: {
+        catch_imageToAdd: function catch_imageToAdd(image) {
+            var _this = this;
+
+            this.image = image;
+            var index = "";
+            // find item id to delete
+            this.list_image_data.forEach(function (item, key) {
+                if (item.id == _this.image.id) {
+                    index = key;
+                    return index;
+                }
+            });
+
+            // delete item
+            if (index >= 0) {
+                this.list_image_data.splice(index, 1);
+            }
+
+            this.list_image_to_add.unshift(image);
+        },
+        catch_image: function catch_image(image) {
+            var _this2 = this;
+
+            this.image_remove = image;
+            var index = "";
+
+            // find index of item
+            this.list_image_to_add.forEach(function (item, key) {
+                if (item.id == _this2.image.id) {
+                    index = key;
+                    return index;
+                }
+            });
+
+            // delete item
+            if (index >= 0) {
+                this.list_image_to_add.splice(index, 1);
+            }
+
+            // add item to list
+            this.list_image_data.unshift(image);
+        },
+        postAddGallery: function postAddGallery() {
+            var list_image_to_add_json = JSON.stringify(this.list_image_to_add);
+            console.log(list_image_to_add_json);
+            window.axios.post("api/gallery/create", {
+                product_id: this.product_id_data,
+                list_image_to_add: list_image_to_add_json
+            }).then(function (response) {
+                console.log(response.data.result);
+            }).catch(function (error) {
+                console.log(error.response.data);
+            });
+        }
+    },
+
+    watch: {}
+});
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "list-image-gallery-comp" }, [
+    _c("div", { staticClass: "col-lg-12 col-sm-12 col-xs-12 col-md-12" }, [
+      _c("div", { staticClass: "col-lg-6 col-sm-6 col-xs-6 col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Product Name")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.product_id_data,
+                  expression: "product_id_data"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { name: "product_name" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.product_id_data = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            _vm._l(_vm.list_product_data, function(item) {
+              return _c("option", { domProps: { value: item.id } }, [
+                _vm._v(_vm._s(item.name) + "\n                    ")
+              ])
+            }),
+            0
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "col-lg-6 col-sm-6 col-xs-6 col-md-6" },
+      [
+        _c("list_image_comp", {
+          key: _vm.image_remove.id,
+          attrs: { list_image: _vm.list_image, image_path: _vm.image_path },
+          on: {
+            imageToAdd: function($event) {
+              return _vm.catch_imageToAdd.apply(void 0, arguments)
+            }
+          }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "col-lg-6 col-sm-6 col-xs-6 col-md-6" },
+      [
+        _c("list_image_product_comp", {
+          key: _vm.image.id,
+          attrs: {
+            image_path: _vm.image_path,
+            list_image_to_add: _vm.list_image_to_add
+          },
+          on: {
+            image: function($event) {
+              return _vm.catch_image.apply(void 0, arguments)
+            }
+          }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-lg-12 col-sm-12 col-xs-12 col-md-12" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-default",
+          attrs: { type: "button" },
+          on: {
+            click: function($event) {
+              return _vm.postAddGallery()
+            }
+          }
+        },
+        [_vm._v("\n            " + _vm._s(_vm.submit_button) + "\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-default", attrs: { type: "reset" } },
+        [_vm._v(_vm._s(_vm.cancel_button))]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2a950f3a", module.exports)
   }
 }
 

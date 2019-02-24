@@ -40,34 +40,11 @@
                     <!-- /.col-lg-12 -->
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                            <form action="admin/gallery/create" method="POST"
-                                  enctype="multipart/form-data">
-                                {{csrf_field()}}
-                                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                                    <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
-                                        <div class="form-group">
-                                            <label>Product Name</label>
-                                            <select class="form-control" name="manufacturer_id">
-                                                @foreach($list_product as $item)
-                                                    <option value="{{$item->id}}">{{$item->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
-                                    <list-image-comp :list_image="{{$list_image}}"
-                                                     image_path={{$IMAGE_PATH}}></list-image-comp>
-                                </div>
-                                {{--<div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">--}}
-                                {{--<list-image-product-comp :list_image="{{$list_image}}"--}}
-                                {{--:IMAGE_PATH={{$IMAGE_PATH}}></list-image-product-comp>--}}
-                                {{--</div>--}}
-                                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                                    <button type="submit" class="btn btn-default">{{$SUBMIT_BUTTON}}</button>
-                                    <button type="reset" class="btn btn-default">{{$CANCEL_BUTTON}}</button>
-                                </div>
-                            </form>
+                            <list-image-gallery-comp :list_image="{{$list_image}}"
+                                                     :list_product="{{$list_product}}"
+                                                     image_path="{{$IMAGE_PATH}}"
+                                                     submit_button="{{$SUBMIT_BUTTON}}"
+                                                     cancel_button="{{$CANCEL_BUTTON}}"></list-image-gallery-comp>
                         </div>
                     </div>
                 </div>
@@ -99,7 +76,13 @@
                 }
                 reader.readAsDataURL(input.files[0]);
             }
-        };
+        }
+
+        // function getProductID() {
+        //     console.log($("#product_name").val());
+        //     let product_id = $("#product_name").val();
+        //     $("#list_image_gallery_comp").attr("product_id", product_id);
+        // }
 
         // trigger readPath function by onchange event
         $('#thumbnail').change(function () {

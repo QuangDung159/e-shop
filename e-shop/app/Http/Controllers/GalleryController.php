@@ -6,12 +6,16 @@ use App\Models\Gallery;
 use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Collection;
 
 class GalleryController extends Controller
 {
     private $ADMIN_GALLERY_DIRECTORY = "admin.page.gallery.";
     private $ADMIN_GALLERY_URL = "admin/gallery/";
     private $IMAGE_PATH = "image/";
+
+    // Route Page Methods
 
     public function showListGalleryPage()
     {
@@ -35,44 +39,6 @@ class GalleryController extends Controller
         );
     }
 
-    public function postCreateImage(Request $request)
-    {
-        $this->validate($request,
-            [
-                "thumbnail" => "required"
-            ],
-            [
-                "thumbnail.required" => "Please provide Image"
-            ]
-        );
-
-        $image = new Image();
-        $image->id = str_random(11);
-        if ($request->hasFile("thumbnail")) {
-            $file = $request->file("thumbnail");
-            // get file extension
-            $file_ext = $file->getClientOriginalExtension();
-            if ($file_ext != "png" && $file_ext != "jpeg" && $file_ext != "jpg") {
-                return redirect($this->ADMIN_IMAGE_URL . "create")
-                    ->with("invalid_type", "Invalid type");
-            } else {
-                // get file name
-                $file_name = $file->getClientOriginalName();
-                $file_name_to_save = str_random(11) . $file_name;
-                while (file_exists($this->IMAGE_PATH . $file_name_to_save)) {
-                    $file_name_to_save = str_random(11) . $file_name;
-                }
-                $image->path = $file_name_to_save;
-                $file->move($this->IMAGE_PATH, $file_name_to_save);
-            }
-        }
-
-        $image->save();
-
-        return redirect($this->ADMIN_IMAGE_URL . "create")
-            ->with("success", "Create Image successfully");
-    }
-
     public function showUpdateImagePage($image_id)
     {
         $image = Image::find($image_id);
@@ -82,41 +48,6 @@ class GalleryController extends Controller
                     "image" => $image
                 ]
             );
-        } else {
-            return redirect($this->ADMIN_IMAGE_URL . "list")
-                ->with("error", "Image ID not exist");
-        }
-    }
-
-    public function postUpdateImage($image_id, Request $request)
-    {
-        $image = Image::find($image_id);
-        if (isset($image)) {
-            if ($request->hasFile("thumbnail")) {
-                $file = $request->file("thumbnail");
-                // get file extension
-                $file_ext = $file->getClientOriginalExtension();
-                if ($file_ext != "jpg" && $file_ext != "jpeg" && $file_ext != "png") {
-                    return redirect($this->ADMIN_IMAGE_URL . "update")
-                        ->with("invalid_type", "Invalid type");
-                } else {
-                    // get file name
-                    $file_name = $file->getClientOriginalName();
-                    $file_name_to_save = str_random(11) . $file_name;
-                    while (file_exists($this->IMAGE_PATH . $file_name_to_save)) {
-                        $file_name_to_save = str_random(11) . $file_name;
-                    }
-                    if ($image->path != "no_image_available.png") {
-                        unlink($this->IMAGE_PATH . $image->path);
-                    }
-                    $image->path = $file_name_to_save;
-                    $file->move($this->IMAGE_PATH, $file_name_to_save);
-                }
-            }
-
-            $image->save();
-            return redirect($this->ADMIN_IMAGE_URL . "update/" . $image_id)
-                ->with("success", "Update Image successfully");
         } else {
             return redirect($this->ADMIN_IMAGE_URL . "list")
                 ->with("error", "Image ID not exist");
@@ -136,4 +67,36 @@ class GalleryController extends Controller
                 ->with("error", "Image ID not exist");
         }
     }
+
+    // End Page Route Methods
+
+//----------------------------------------------------------
+
+    // Route Webservices Methods
+
+    public function postCreateGallery(Request $request)
+    {
+        $this->validate($request,
+            [
+                "product_id" => "required"
+            ],
+            [
+                "product_id.required" => "Please provide Product Name"
+            ]
+        );
+
+        $list_image = json_decode($request->list_image_to_add);
+        foreach ($list_image as $item) {
+            $gallery = new Gallery();
+            $gallery->product_id = $request->product_id;
+            $gallery->image_id = $item->id;
+            $gallery->save();
+        }
+
+        return response([
+            "result" => "success"
+        ], 200);
+    }
+
+    // End Route Webservices Methods
 }

@@ -188,6 +188,16 @@ Route::group(
                 Route::get("delete/{category_id}", $CONTROLLER_NAME . "getDeleteCategory");
             }
         );
+
+        Route::group(
+            [
+                "prefix" => "gallery"
+            ],
+            function () {
+                $CONTROLLER_NAME = "GalleryController@";
+                Route::post("create", $CONTROLLER_NAME . "postCreateGallery");
+            }
+        );
     }
 );
 // End URL API
