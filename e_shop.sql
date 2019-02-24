@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 22, 2019 lúc 03:27 PM
--- Phiên bản máy phục vụ: 10.1.36-MariaDB
--- Phiên bản PHP: 5.6.38
+-- Thời gian đã tạo: Th2 24, 2019 lúc 06:16 AM
+-- Phiên bản máy phục vụ: 10.1.37-MariaDB
+-- Phiên bản PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -209,11 +209,11 @@ CREATE TABLE `product` (
   `id` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `thumbnail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `price` float NOT NULL,
-  `buyed` int(11) NOT NULL,
-  `views` int(11) NOT NULL,
-  `rate` int(11) NOT NULL,
+  `thumbnail` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no_image_available.png',
+  `price` float NOT NULL DEFAULT '1000000',
+  `buyed` int(11) NOT NULL DEFAULT '0',
+  `views` int(11) NOT NULL DEFAULT '0',
+  `rate` int(11) NOT NULL DEFAULT '0',
   `sub_category_id` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -226,7 +226,25 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `description`, `thumbnail`, `price`, `buyed`, `views`, `rate`, `sub_category_id`, `is_active`, `created_at`, `updated_at`, `manufacturer_id`) VALUES
-('1', 'Sên RK 520KRX Phốt Cao Su X-Ring ', 'Sên RK 520KRO phốt cao su X-ring (Chính hãng Nhật Bản) \r\nSên RK 520KRO phốt cao su X-ring (Chính hãng Nhật Bản) là sản phẩm của RK chain, hãng sên đồng hành cùng những chiến thắng của đội đua Honda, HRC. RK Chain là một hãng sên có xuất phát điểm tại Nhật Bản được thành lập từ những năm 1932 nhưng hoạt động mạnh nhất tại Mỹ và luôn được anh em Biker Mỹ ưu ái lựa chọn.\r\nSên RK 520KRO phốt cao su X-ring (Chính hãng Nhật Bản) là dòng cao cấp, với thiết kế phốt cao su cải tiến, có dạng chữ O, giúp giữ được nhiều dầu bôi trơn, từ đó sên xe sẽ được bôi trơn liên tục. Êm hơn là sên không có phốt cao su nhiều lần.', '', 2500000, 123, 123, 4, '1', 1, '2019-02-22 21:06:03', '2019-02-22 14:21:31', 'DJ1NqoTwpHg');
+('1', 'Sên RK 520KRX Phốt Cao Su X-Ring ', 'Sên RK 520KRO phốt cao su X-ring (Chính hãng Nhật Bản) \r\nSên RK 520KRO phốt cao su X-ring (Chính hãng Nhật Bản) là sản phẩm của RK chain, hãng sên đồng hành cùng những chiến thắng của đội đua Honda, HRC. RK Chain là một hãng sên có xuất phát điểm tại Nhật Bản được thành lập từ những năm 1932 nhưng hoạt động mạnh nhất tại Mỹ và luôn được anh em Biker Mỹ ưu ái lựa chọn.\r\nSên RK 520KRO phốt cao su X-ring (Chính hãng Nhật Bản) là dòng cao cấp, với thiết kế phốt cao su cải tiến, có dạng chữ O, giúp giữ được nhiều dầu bôi trơn, từ đó sên xe sẽ được bôi trơn liên tục. Êm hơn là sên không có phốt cao su nhiều lần.', '', 2500000, 123, 123, 4, '1', 0, '2019-02-22 21:06:03', '2019-02-23 05:15:51', 'DJ1NqoTwpHg'),
+('1GyffdXozsJ', 'qweq', '<p>dasdasdad</p>', 'ZeyfQUrnUm2_MG_1536.jpg', 123123, 0, 0, 0, '1', 1, '2019-02-23 06:57:00', '2019-02-23 07:13:02', 'dKoZ72jKeHb'),
+('B9znHSlMm61', 'tesatseat', '<p>qweqweqwe</p>', 'no_image_available.png', 123123, 0, 0, 0, '1', 1, '2019-02-23 06:35:06', '2019-02-23 06:35:36', 'dKoZ72jKeHb'),
+('ckSAWkgTVFr', 'Phuộc Ohlins FRG 300', 'Xin lỗi! Không có thông tin về sản phẩm này.', 'no_image_available.png', 123123000, 0, 0, 0, '1', 1, '2019-02-23 04:10:20', '2019-02-23 04:10:20', 'dKoZ72jKeHb'),
+('DyTUGcEBteT', 'Cùm Brembo Nikel', 'Xin lỗi! Không có thông tin về sản phẩm này.', 'image\\no_image_available.png', 20000000, 0, 0, 0, '1', 1, '2019-02-23 04:08:52', '2019-02-23 04:08:52', 'tgKMRfiRSHA'),
+('EkXBavtWoL1', 'Phuộc Ohlins FRG 300', 'Xin lỗi! Không có thông tin về sản phẩm này.', 'image\\no_image_available.png', 333322000, 0, 0, 0, '1', 1, '2019-02-23 04:11:29', '2019-02-23 04:11:29', 'dKoZ72jKeHb'),
+('GJ5whlukc6t', 'Cùm Brembo Nikel', 'Xin lỗi! Không có thông tin về sản phẩm này.', 'image\\no_image_available.png', 20000000, 0, 0, 0, '1', 1, '2019-02-23 04:09:19', '2019-02-23 04:09:19', 'tgKMRfiRSHA'),
+('gJpajkQhsoz', 'test', '<p>test test</p>', 'image\\no_image_available.png', 123123000, 0, 0, 0, '1', 1, '2019-02-23 06:32:59', '2019-02-23 06:33:08', 'dKoZ72jKeHb'),
+('hEnNBmk2VWU', '3123123123123', '<p>123123</p>', 'image\\no_image_available.png', 123123, 0, 0, 0, '1', 1, '2019-02-23 06:41:55', '2019-02-23 06:42:05', 'dKoZ72jKeHb'),
+('IijXOhbWnxl', 'eqweeeqwe', '<p>qweqwe</p>', 'image\\no_image_available.png', 123123000, 0, 0, 0, '1', 1, '2019-02-23 06:35:53', '2019-02-23 06:38:12', 'dKoZ72jKeHb'),
+('iMN9vtOXRRO', 'Cùm Brembo Nikel', '<p>qweqweqwe</p>', '1K2vH2yb1f9_MG_1714.jpg', 123123, 0, 0, 0, '1', 1, '2019-02-23 06:51:03', '2019-02-23 06:51:18', 'dKoZ72jKeHb'),
+('jViOsaqe6R3', 'Phuộc Ohlins FRG 300', 'Xin lỗi! Không có thông tin về sản phẩm này.', 'image\\no_image_available.png', 200000000, 0, 0, 0, '1', 1, '2019-02-23 04:07:35', '2019-02-23 04:07:35', 'dKoZ72jKeHb'),
+('lbUvFN8Vj6J', 'Cùm côn Brembo RCS19', 'Xin lỗi! Không có thông tin về sản phẩm này.', 'image\\no_image_available.png', 1000000, 0, 0, 0, '1', 1, '2019-02-23 03:58:36', '2019-02-23 03:58:36', 'tgKMRfiRSHA'),
+('pL8sciooNCH', 'Cùm thắng Nissin', '<p>Hơi bị ngon, nhưng không bằng brembo</p>', 'image\\no_image_available.png', 10000000, 0, 0, 0, '1', 1, '2019-02-23 04:30:16', '2019-02-23 04:30:36', 'tgKMRfiRSHA'),
+('sNkSEMQmaFE', '123123', '<p>asdasdasd</p>', 'image\\no_image_available.png', 10000000, 0, 0, 0, '1', 1, '2019-02-23 04:45:44', '2019-02-23 05:15:39', 'tgKMRfiRSHA'),
+('Sq4S54XoDuE', 'eqwe12312', '<p>qwdqwd</p>', 'image\\no_image_available.png', 123123000, 0, 0, 0, '1', 1, '2019-02-23 06:38:27', '2019-02-23 06:40:31', 'dKoZ72jKeHb'),
+('vkdozQM3KJh', 'Cùm Brembo Nikel', '<p>qweqwe</p>', 'image\\no_image_available.png', 1233120000, 0, 0, 0, '1', 1, '2019-02-23 04:16:08', '2019-02-23 04:29:31', 'dKoZ72jKeHb'),
+('wCe7FMdo9ac', 'Phuộc Ohlins FRG 300', 'Xin lỗi! Không có thông tin về sản phẩm này.', 'image\\no_image_available.png', 12333100000, 0, 0, 0, '1', 1, '2019-02-23 04:12:17', '2019-02-23 04:12:17', 'dKoZ72jKeHb'),
+('Y2arqI54A6N', 'Cùm côn Brembo Billet', 'Xin lỗi! Không có thông tin về sản phẩm này.', 'image\\no_image_available.png', 10000000, 0, 0, 0, '1', 1, '2019-02-23 04:03:28', '2019-02-23 04:03:28', 'tgKMRfiRSHA');
 
 -- --------------------------------------------------------
 
@@ -304,8 +322,17 @@ CREATE TABLE `slider` (
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `path` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `path` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no_image.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `slider`
+--
+
+INSERT INTO `slider` (`id`, `name`, `link`, `is_active`, `created_at`, `updated_at`, `path`) VALUES
+('1', 'slide 4', 'google.com', 1, '2019-02-23 12:54:25', '2019-02-23 08:03:54', 'eOznWEwvbESlogo.png'),
+('3U25EPaWVoN', 'slide 4', 'google.com', 0, '2019-02-23 07:56:54', '2019-02-23 08:07:02', 'yERo6gEAPU0_MG_1714.jpg'),
+('QDHuzJA6tRY', 'slider 1', 'google.com', 1, '2019-02-23 07:37:45', '2019-02-23 07:37:45', '9GksSv2Ubegcombo.jpg');
 
 -- --------------------------------------------------------
 
@@ -327,10 +354,10 @@ CREATE TABLE `sub_category` (
 --
 
 INSERT INTO `sub_category` (`id`, `name`, `category_id`, `is_active`, `created_at`, `updated_at`) VALUES
-('1', 'Cùm côn Brembo', 'dBdzURtCDNB', 0, '2019-02-18 21:25:37', '2019-02-21 13:20:14'),
+('1', 'Cùm côn Brembo', 'dBdzURtCDNB', 1, '2019-02-18 21:25:37', '2019-02-21 13:20:14'),
 ('2', 'Dĩa', '1', 1, '2019-02-18 21:25:37', '2019-02-18 21:25:37'),
 ('2ZHAulQz0PN', 'Sên', '1', 1, '2019-02-21 12:46:26', '2019-02-21 13:20:36'),
-('3ZA7o1MqdBS', 'Nhông', '1', 0, '2019-02-21 12:41:52', '2019-02-21 13:19:00');
+('3ZA7o1MqdBS', 'Nhông', '1', 1, '2019-02-21 12:41:52', '2019-02-21 13:19:00');
 
 -- --------------------------------------------------------
 
