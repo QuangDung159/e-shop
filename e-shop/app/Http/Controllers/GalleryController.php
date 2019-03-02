@@ -29,7 +29,7 @@ class GalleryController extends Controller
 
     public function showCreateGalleryPage()
     {
-        $list_product = Product::where("is_active", true)->get();
+        $list_product = DB::select("select p.* from product p LEFT join gallery g on p.id = g.product_id where g.product_id is null");
         $list_image = DB::select("select i.* from image i left join gallery g on i.id = g.image_id where g.image_id is null");
         return view($this->ADMIN_GALLERY_DIRECTORY . "create",
             [
@@ -43,6 +43,9 @@ class GalleryController extends Controller
     {
         $gallery = Gallery::where("product_id", $product_id);
         $product = Product::find($product_id);
+        // need get list image associate with gallery have product id
+        // code here
+        
         $list_image = DB::select("select i.* from image i left join gallery g on i.id = g.image_id where g.image_id is null");
         if (isset($gallery)) {
             return view($this->ADMIN_GALLERY_DIRECTORY . "update",

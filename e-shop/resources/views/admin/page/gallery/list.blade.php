@@ -52,10 +52,10 @@
                                 <img width="150px" src="{{$IMAGE_PATH}}/{{$item->image->path}}"/>
                             </td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i>
-                                <a href="admin/gallery/delete/{{$item->id}}">{{$DELETE_BUTTON}}</a>
+                                <a href="admin/gallery/delete/{{$item->product_id}}">{{$DELETE_BUTTON}}</a>
                             </td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i>
-                                <a href="admin/gallery/update/{{$item->id}}">{{$EDIT_BUTTON}}</a>
+                                <a href="admin/gallery/update/{{$item->product_id}}">{{$EDIT_BUTTON}}</a>
                             </td>
                         </tr>
                     @endforeach

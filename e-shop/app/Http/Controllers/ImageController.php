@@ -51,7 +51,7 @@ class ImageController extends Controller
                 $file_name = $file->getClientOriginalName();
                 $file_name_to_save = str_random(11) . $file_name;
                 while (file_exists($this->IMAGE_PATH . $file_name_to_save)) {
-                    $file_name_to_save = str_random(11) . $file_name;
+                    $file_name_to_save = str_random(5) . $file_name;
                 }
                 $image->path = $file_name_to_save;
                 $file->move($this->IMAGE_PATH, $file_name_to_save);
@@ -93,7 +93,7 @@ class ImageController extends Controller
                 } else {
                     // get file name
                     $file_name = $file->getClientOriginalName();
-                    $file_name_to_save = str_random(11) . $file_name;
+                    $file_name_to_save = str_random(5) . $file_name;
                     while (file_exists($this->IMAGE_PATH . $file_name_to_save)) {
                         $file_name_to_save = str_random(11) . $file_name;
                     }

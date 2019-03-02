@@ -29,7 +29,7 @@
                     </div>
 
                     <h1 class="page-header">Image
-                        <small>List - <a role="button" href="admin/gallery/create">{{$CREATE_BUTTON}}</a></small>
+                        <small>List - <a role="button" href="admin/image/create">{{$CREATE_BUTTON}}</a></small>
                     </h1>
                 </div>
                 <!-- /.col-lg-12 -->

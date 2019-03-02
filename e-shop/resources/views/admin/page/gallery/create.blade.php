@@ -40,7 +40,7 @@
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                             <list-image-gallery-comp :list_image="{{json_encode($list_image)}}"
-                                                     :list_product="{{$list_product}}"
+                                                     :list_product="{{json_encode($list_product)}}"
                                                      image_path="{{$IMAGE_PATH}}"
                                                      submit_button="{{$SUBMIT_BUTTON}}"
                                                      cancel_button="{{$CANCEL_BUTTON}}"></list-image-gallery-comp>
