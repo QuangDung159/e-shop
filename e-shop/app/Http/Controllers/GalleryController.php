@@ -45,7 +45,7 @@ class GalleryController extends Controller
         $product = Product::find($product_id);
         // need get list image associate with gallery have product id
         // code here
-        
+
         $list_image = DB::select("select i.* from image i left join gallery g on i.id = g.image_id where g.image_id is null");
         if (isset($gallery)) {
             return view($this->ADMIN_GALLERY_DIRECTORY . "update",
