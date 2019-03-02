@@ -118,7 +118,7 @@ Route::group(
                 Route::get("list", $CONTROLLER_NAME . "showListGalleryPage");
                 Route::get("create", $CONTROLLER_NAME . "showCreateGalleryPage");
                 Route::post("create", $CONTROLLER_NAME . "postCreateGallery");
-                Route::get("update/{gallery_id}", $CONTROLLER_NAME . "showUpdateGalleryPage");
+                Route::get("update/{product_id}", $CONTROLLER_NAME . "showUpdateGalleryPage");
                 Route::post("update/{gallery_id}", $CONTROLLER_NAME . "postUpdateGallery");
                 Route::get("delete/{gallery_id}", $CONTROLLER_NAME . "getDeleteGallery");
             }

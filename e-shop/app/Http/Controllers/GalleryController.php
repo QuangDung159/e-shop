@@ -31,9 +31,6 @@ class GalleryController extends Controller
     {
         $list_product = Product::where("is_active", true)->get();
         $list_image = DB::select("select i.* from image i left join gallery g on i.id = g.image_id where g.image_id is null");
-        foreach ($list_image as $image) {
-            Log::info("image id : " .$image->id);
-        }
         return view($this->ADMIN_GALLERY_DIRECTORY . "create",
             [
                 "list_product" => $list_product,
@@ -42,18 +39,22 @@ class GalleryController extends Controller
         );
     }
 
-    public function showUpdateImagePage($image_id)
+    public function showUpdateGalleryPage($product_id)
     {
-        $image = Image::find($image_id);
-        if (isset($image)) {
-            return view($this->ADMIN_IMAGE_DIRECTORY . "update",
+        $gallery = Gallery::where("product_id", $product_id);
+        $product = Product::find($product_id);
+        $list_image = DB::select("select i.* from image i left join gallery g on i.id = g.image_id where g.image_id is null");
+        if (isset($gallery)) {
+            return view($this->ADMIN_GALLERY_DIRECTORY . "update",
                 [
-                    "image" => $image
+                    "gallery" => $gallery,
+                    "product" => $product,
+                    "list_image" => $list_image
                 ]
             );
         } else {
-            return redirect($this->ADMIN_IMAGE_URL . "list")
-                ->with("error", "Image ID not exist");
+            return redirect($this->ADMIN_GALLERY_URL . "list")
+                ->with("error", "Gallery ID not exist");
         }
     }
 

@@ -28,6 +28,8 @@ Vue.component("list-image-product-comp", require("./components/list_image_produc
 
 Vue.component("list-image-gallery-comp", require("./components/list_image_gallery_comp"));
 
+Vue.component("list-image-gallery-update-comp", require("./components/list_image_gallery_update_comp"));
+
 import moment from "moment";
 
 Vue.filter("format_DDMMYYYY", function (datetime) {
