@@ -83,8 +83,8 @@
                 // check count image
                 if (this.list_image_to_add.length < 4) {
                     if (index >= 0) {
-                    this.list_image_data.splice(index, 1);
-                }
+                        this.list_image_data.splice(index, 1);
+                    }
                     this.list_image_to_add.unshift(image);
                 } else {
                     alert("Sorry! Too much");
@@ -123,6 +123,7 @@
                     }
                 ).then(response => {
                         console.log(response.data.result);
+                        this.$emit("is_success", true);
                     }
                 ).catch(error => {
                         console.log(error.response.data);

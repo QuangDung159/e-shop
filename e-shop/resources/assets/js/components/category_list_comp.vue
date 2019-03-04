@@ -13,13 +13,13 @@
                     <div class="col-lg-12">
                         <!-- Notification -->
                         <notification_comp action="Create"
-                                           module="user"
+                                           module="category"
                                            v-if="is_success"></notification_comp>
                         <!-- End Notification -->
 
                         <!-- Notification -->
                         <notification_comp action="Delete"
-                                           module="user"
+                                           module="category"
                                            v-if="is_show_notif"></notification_comp>
                         <!-- End Notification -->
 
@@ -112,6 +112,7 @@
                     .then(response => {
                             console.log(response.data);
                             this.getListCategory();
+                            this.is_show_notif = true;
                         }
                     ).catch(error => {
                         console.log(error.response.data);
