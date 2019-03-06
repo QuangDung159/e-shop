@@ -53,22 +53,58 @@
                     <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Category<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">List Category</a>
+                            <a href="admin/category/list">List Category</a>
                         </li>
                         <li>
-                            <a href="#">Add Category</a>
+                            <a href="admin/category/create">Add Category</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-cube fa-fw"></i> Product<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Sub Category<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">List Product</a>
+                            <a href="admin/sub_category/list">List Sub Category</a>
                         </li>
                         <li>
-                            <a href="#">Add Product</a>
+                            <a href="admin/sub_category/create">Add Sub Category</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Product<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="admin/product/list">List Product</a>
+                        </li>
+                        <li>
+                            <a href="admin/product/create">Add Product</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Image<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="admin/image/list">List Image</a>
+                        </li>
+                        <li>
+                            <a href="admin/image/create">Add Image</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-cube fa-fw"></i> Gallery<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="admin/gallery/list">List Gallery</a>
+                        </li>
+                        <li>
+                            <a href="admin/gallery/create">Add Gallery</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -77,7 +113,7 @@
                     <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">List User</a>
+                            <a href="admin/user/list">List User</a>
                         </li>
                         <li>
                             <a href="#">Add User</a>
