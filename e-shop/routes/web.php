@@ -144,6 +144,23 @@ Route::group(
         );
     }
 );
+
+Route::group(
+    [
+        "prefix" => "home"
+    ],
+    function () {
+        Route::group(
+            [
+                ""
+            ],
+            function () {
+                $CONTROLLER_NAME = "HomeController@";
+                Route::get("", $CONTROLLER_NAME . "showHomePage");
+            }
+        );
+    }
+);
 // End URL Routing Page
 
 //----------------------------------------------------------
