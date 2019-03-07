@@ -3,19 +3,15 @@
 @include(".client.layout.header")
 <body>
 
-<div class="super_container">
+<div class="super_container" id="app">
 
     <!-- Header -->
 
 @include(".client.layout.page_header")
 
-<!-- Menu -->
-
-@include(".client.layout.menu")
-
 <!-- Home -->
 
-<!-- Products -->
+    <!-- Products -->
 
 @yield("content")
 
@@ -36,8 +32,9 @@
     @include(".client.layout.page_footer")
 
 </div>
-
+<script src="/js/app.js"></script>
 @include(".client.layout.footer")
+
 
 </body>
 </html>

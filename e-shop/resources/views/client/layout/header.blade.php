@@ -12,4 +12,6 @@
     <link rel="stylesheet" type="text/css" href="{{$DIRECTORY_CLIENT_ASSET}}styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="{{$DIRECTORY_CLIENT_ASSET}}styles/responsive.css">
     <base href="{{asset("")}}">
+    <link href="{{$DIRECTORY_CLIENT_ASSET}}custom_css.css" rel="stylesheet" type="text/css" >
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
