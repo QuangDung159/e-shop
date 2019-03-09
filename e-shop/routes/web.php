@@ -215,6 +215,16 @@ Route::group(
                 Route::post("create", $CONTROLLER_NAME . "postCreateGallery");
             }
         );
+
+        Route::group(
+            [
+                "prefix" => "slider"
+            ],
+            function () {
+                $CONTROLLER_NAME = "SliderController@";
+                Route::get("list_slider", $CONTROLLER_NAME . "getListSlider");
+            }
+        );
     }
 );
 // End URL API

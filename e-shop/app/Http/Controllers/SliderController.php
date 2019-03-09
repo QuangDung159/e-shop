@@ -11,6 +11,8 @@ class SliderController extends Controller
     private $ADMIN_SLIDER_URL = "admin/slider/";
     private $IMAGE_PATH = "image/slide/";
 
+    // Route Page Methods
+
     public function showListSliderPage()
     {
         $list_slider = Slider::where("is_active", true)->get();
@@ -158,4 +160,21 @@ class SliderController extends Controller
                 ->with("error", "Slider ID not exist");
         }
     }
+
+    // End Page Route Methods
+
+//----------------------------------------------------------
+
+    // Route Webservices Methods
+
+    public function getListSlider()
+    {
+        $list_slider = Slider::where("is_active", true)->get();
+        return response([
+            "result" => "success",
+            "list_slider" => $list_slider
+        ], 200);
+    }
+
+    // End Route Webservices Methods
 }

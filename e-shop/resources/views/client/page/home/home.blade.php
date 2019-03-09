@@ -9,9 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-
                     <div class="product_grid">
-
                         <!-- Product -->
                         <div class="product">
                             <div class="product_image"><img src="{{$DIRECTORY_CLIENT_ASSET}}images/product_1.jpg"
