@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Slider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -34,5 +35,13 @@ class Controller extends BaseController
         View::share("DELETE_BUTTON", "Delete");
 
         View::share("IMAGE_PATH", "image");
+
+        $this->getListSlider();
+    }
+
+    public function getListSlider()
+    {
+        $list_slider = Slider::where("is_active", true)->get();
+        View::share("list_slider", $list_slider);
     }
 }
