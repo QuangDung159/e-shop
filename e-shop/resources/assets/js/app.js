@@ -34,6 +34,8 @@ Vue.component("gallery-list-comp", require("./components/gallery_list_comp"));
 
 Vue.component("category-comp", require("./components/client/category_comp"));
 
+Vue.component("list-product-home-comp", require("./components/client/list_product_home_comp"));
+
 
 import moment from "moment";
 
