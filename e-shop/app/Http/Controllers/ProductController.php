@@ -37,6 +37,10 @@ class ProductController extends Controller
         );
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function postCreateProduct(Request $request)
     {
         $this->validate($request,
